@@ -4,5 +4,5 @@ import { RouterLink, RouterView } from 'vue-router/auto'
 </script>
 
 <template>
-    <h1 class="text-2xl bg-slate-400">Page d'accueil</h1>
+    <p class="text-2xl bg-slate-400">Portfolio</p>
 </template>

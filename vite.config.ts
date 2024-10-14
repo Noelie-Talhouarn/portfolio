@@ -19,7 +19,7 @@ export default defineConfig({
     }
   }
   ,
-  build: {
+  /* build: {
     outDir: './pocketbase/pb_public'
-  }
+  } */
 })

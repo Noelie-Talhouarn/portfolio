@@ -17,6 +17,7 @@ import LogInOut from './components/LogInOut.vue';
     </div>
   </header>
   <main>
+    <h1>Porfolio</h1>
     <RouterView v-slot="{ Component }">
     <Suspense>
       <component :is="Component" :key="$route.path" />
