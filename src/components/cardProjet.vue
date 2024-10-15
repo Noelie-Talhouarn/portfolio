@@ -19,7 +19,7 @@ defineProps<Partial<ProjetsResponse>>()
         {{ nom_projet }}
       </p>
       <p class="self-stretch flex-grow-0 flex-shrink-0 w-[156px] text-xs text-left text-black">
-        Description
+        {{ description_projet }}
       </p>
     </div>
     <div

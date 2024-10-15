@@ -6,5 +6,5 @@ import CardProjet from '@/components/CardProjet.vue';
 <template>
 <h1 class="font-ahsing text-7xl">guide de style</h1>
 <Btn />
-<CardProjet nom_projet="projet1" />
+<CardProjet nom_projet="projet1" description_projet="lol" />
 </template>
