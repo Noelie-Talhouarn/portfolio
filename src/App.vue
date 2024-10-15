@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router/auto'
 import LogInOut from './components/LogInOut.vue';
+import HeaderPage from './components/headerPage.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import LogInOut from './components/LogInOut.vue';
     </div>
   </header>
   <main>
+    <HeaderPage />
     <h1>Porfolio</h1>
     <RouterView v-slot="{ Component }">
     <Suspense>

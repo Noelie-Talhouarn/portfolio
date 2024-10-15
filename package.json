@@ -11,8 +11,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "typegen": "pocketbase-typegen --db ./pocketbase/pb_data/data.db  --out ./src/pocketbase-types.ts" 
-
+    "typegen": "pocketbase-typegen --db ./pocketbase/pb_data/data.db  --out ./src/pocketbase-types.ts"
   },
   "dependencies": {
     "pocketbase": "^0.21.5",
@@ -34,7 +33,7 @@
     "npm-run-all2": "^6.2.0",
     "postcss": "^8.4.45",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.6",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.10",
     "typescript": "~5.4.0",
     "unplugin-vue-router": "^0.10.8",
