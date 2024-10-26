@@ -8,13 +8,14 @@ export default {
         backgroundGris: '#dbdfe1'
       },
       fontSize: {
-        base: '1.25rem',
-        lg: '1.5rem',
-        xl: '1.875rem',
-        '2xl': '2.25rem',
-        '3xl': '2.8125rem',
-        '4xl': '3rem',
-        '5xl': '4.5rem'
+        base: '1rem',
+        lg: '1.25rem',
+        xl: '1.5rem',
+        '2xl': '1.875rem',
+        '3xl': '2.25rem',
+        '4xl': '2.8125rem',
+        '5xl': '3rem',
+        '6xl': '4.5rem'
       },
       fontFamily: {
         'roboto-mono': 'Roboto Mono',
