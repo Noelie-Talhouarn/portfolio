@@ -4,6 +4,7 @@ import GithubIcon from './icons/githubIcon.vue'
 import InstagramIcon from './icons/instagramIcon.vue'
 import LinkedinIcon from './icons/linkedinIcon.vue'
 import IconGithub from './icons/IconGithub.vue'
+import IconInstagram from './icons/IconInstagram.vue'
 </script>
 
 <template>
@@ -24,7 +25,7 @@ import IconGithub from './icons/IconGithub.vue'
           </li>
           <li>
             <a href="https://www.instagram.com/noelie.tl_/" aria-label="Instagram"
-              ><InstagramIcon
+              ><IconInstagram
             /></a>
           </li>
         </ul>
