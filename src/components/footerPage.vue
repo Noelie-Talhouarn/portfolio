@@ -7,10 +7,10 @@ import IconGithub from './icons/IconGithub.vue'
 </script>
 
 <template>
-  <footer class="border-t border-t-black p-2">
-    <div class="lg:px-50 lg:grid lg:grid-cols-3">
+  <footer class="px-28 lg:px-60">
+    <div class="border-t border-t-black p-2 pt-4">
       <nav
-        class="gap-8 space-y-8 px-5 *:break-inside-avoid *:space-y-3 lg:col-span-1 lg:col-start-1 lg:columns-3 lg:px-0"
+        class="gap-8 space-y-8 px-5 *:break-inside-avoid *:space-y-3  lg:col-start-3 lg:columns-3 lg:px-0 lg:flex lg:justify-center"
       >
         <ul class="flex justify-center gap-12">
           <li>
