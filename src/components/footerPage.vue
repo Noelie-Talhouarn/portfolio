@@ -7,7 +7,7 @@ import IconGithub from './icons/IconGithub.vue'
 </script>
 
 <template>
-  <footer class="px-28 lg:px-60">
+  <footer class="px-24 lg:px-60">
     <div class="border-t border-t-black p-2 pt-4">
       <nav
         class="gap-8 space-y-8 px-5 *:break-inside-avoid *:space-y-3  lg:col-start-3 lg:columns-3 lg:px-0 lg:flex lg:justify-center"
