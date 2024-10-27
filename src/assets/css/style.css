@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'Ahsing';
-    src: url('src/assets/font/Ahsing-Regular.woff') format('woff'),
-         url('src/assets/font/Ahsing-Regular.woff2') format('woff2');
+    src: url('@assets/font/Ahsing-Regular.woff') format('woff'),
+         url('@assets/font/Ahsing-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
