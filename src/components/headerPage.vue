@@ -66,7 +66,7 @@ function closeMenu() {
         <li>
           <RouterLink
             class="block py-2 rounded-lg lg:hover:underline"
-            to="/infos"
+            to="/about"
             @click="closeMenu"
             >A propos</RouterLink
           >
