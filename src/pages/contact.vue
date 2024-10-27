@@ -59,7 +59,7 @@ const handleSubmit = async (e: Event) => {
 <template>
   <section class="justify-center text-black">
     <div class="">
-      <h1 class="p-4 text-center">Me <span class="text-mauve">contacter</span></h1>
+      <h1 class="p-4 lg:text-center">Me <span class="text-mauve">contacter</span></h1>
     </div>
     <div class="lg:mx-40">
       <p class="m-6 font-normal lg:text-lg">
@@ -67,7 +67,7 @@ const handleSubmit = async (e: Event) => {
         Je serai ravie de vous répondre dans les plus brefs délais !
       </p>
 
-      <!-- Affichage du message_contact de statut -->
+     
       <div v-if="statusmessage_contact" 
            :class="statusmessage_contact.includes('succès') ? 'text-green-600' : 'text-red-600'"
            class="text-center my-4">
@@ -76,7 +76,7 @@ const handleSubmit = async (e: Event) => {
     
       <form @submit="handleSubmit" class="space-y-4 mx-6">
         <div>
-          <label for="nom_contact" class="block text-base font-medium lg:text-lg">Prénom</label>
+          <label for="nom" class="block text-base font-medium lg:text-lg">Prénom</label>
           <input 
             v-model="formData.nom_contact"
             type="text" 
@@ -88,7 +88,7 @@ const handleSubmit = async (e: Event) => {
         </div>
         
         <div>
-          <label for="prenom_contact" class="block text-base font-medium lg:text-lg">Nom</label>
+          <label for="prenom" class="block text-base font-medium lg:text-lg">Nom</label>
           <input 
             v-model="formData.prenom_contact"
             type="text" 
@@ -100,7 +100,7 @@ const handleSubmit = async (e: Event) => {
         </div>
         
         <div>
-          <label for="email_contact" class="block text-base font-medium lg:text-lg">email</label>
+          <label for="email" class="block text-base font-medium lg:text-lg">email</label>
           <input 
             v-model="formData.email_contact"
             type="email" 
@@ -112,11 +112,11 @@ const handleSubmit = async (e: Event) => {
         </div>
         
         <div>
-          <label for="object_contact" class="block text-base font-medium lg:text-lg">Objet</label>
+          <label for="objet" class="block text-base font-medium lg:text-lg">Objet</label>
           <input 
             v-model="formData.objet_contact"
             type="text" 
-            id="object" 
+            id="objet" 
             class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base" 
             placeholder="ex : Infos sur les tarifs"
             required
@@ -124,7 +124,7 @@ const handleSubmit = async (e: Event) => {
         </div>
         
         <div>
-          <label for="message_contact" class="block text-base font-medium lg:text-lg">message</label>
+          <label for="message" class="block text-base font-medium lg:text-lg">message</label>
           <textarea 
             v-model="formData.message_contact"
             id="message" 

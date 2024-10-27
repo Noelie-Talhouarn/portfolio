@@ -10,3 +10,22 @@
 
 
 }
+
+@layer base {
+body {
+        @apply text-base leading-normal lg:text-xl;
+    }
+
+    h1 {
+        @apply leading-tight text-6xl lg:text-7xl font-ahsing;
+    }
+
+    h2 {
+        @apply text-4xl leading-tight;
+    }
+
+    h3 {
+        @apply text-lg font-bold leading-tight lg:text-2xl;
+    }
+
+}
