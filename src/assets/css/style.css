@@ -2,30 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-    font-family: 'ahsing';
-    src:
-    url('../fonts/ahsing.otf') format('openType');
-
-
+  font-family: 'ahsing';
+  src: url('../fonts/ahsing.otf') format('openType');
 }
 
 @layer base {
-body {
-        @apply text-base leading-normal lg:text-xl;
-    }
+  body {
+    @apply text-base leading-normal lg:text-xl;
+  }
 
-    h1 {
-        @apply leading-tight text-6xl lg:text-7xl font-ahsing;
-    }
+  h1 {
+    @apply font-ahsing text-6xl leading-tight lg:text-7xl;
+  }
 
-    h2 {
-        @apply text-4xl leading-tight font-roboto-mono font-semibold;
-    }
+  h2 {
+    @apply font-roboto-mono text-4xl font-semibold leading-tight;
+  }
 
-    h3 {
-        @apply text-lg font-bold leading-tight lg:text-2xl;
-    }
-
+  h3 {
+    @apply text-lg font-bold leading-tight lg:text-2xl;
+  }
 }
