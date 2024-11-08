@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "typegen": "pocketbase-typegen --db ./pocketbase/pb_data/data.db  --out ./src/pocketbase-types.ts",
-    "typegen:remote": "pocketbase-typegen --url https://portfolio-noelietalhouarn.pockethost.io/ --out src/pocketbase-types.ts"
+    "typegen:remote": "pocketbase-typegen --url https://portfolio-noelietalhouarn.pockethost.io/ --out .src/pocketbase-types.ts"
   },
   "dependencies": {
     "pocketbase": "^0.21.5",
