@@ -1,52 +1,32 @@
 <template>
-  <div class="w-full">
-    <!-- Container de la grille avec des colonnes de taille égale -->
-    <div class="grid" :style="gridStyle">
-      <!-- Boucle pour créer les cellules -->
-      <div v-for="index in totalCells" 
-           :key="index"
-           class="border border-gray-300 aspect-square"
-           :class="{'hover:bg-gray-100': enableHover}">
-      </div>
+   <div class="grid grid-cols-5 lg:grid lg:grid-cols-12 lg:grid-rows-4 gap-0 w-full  mx-auto bg-gradient-to-b from-backgroundGris to-mauve  ">
+      <!-- Exemple de grille avec 8 colonnes pour mieux correspondre à l'image -->
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
+      <div class="col-span-1 border border-white h-24"></div>
     </div>
-  </div>
+    <!-- </div> -->
 </template>
-
-<script>
-import { computed } from "vue";
-
-export default {
-  name: 'Grid',
-  props: {
-    // Nombre de colonnes
-    columns: {
-      type: Number,
-      default: 6
-    },
-    // Nombre de lignes
-    rows: {
-      type: Number,
-      default: 5
-    },
-    // Activer l'effet hover sur les cellules
-    enableHover: {
-      type: Boolean,
-      default: true
-    }
-  },
-  computed: {
-    // Calcul du nombre total de cellules
-    totalCells() {
-      return this.rows * this.columns;
-    },
-    // Style CSS dynamique pour la grille
-    gridStyle() {
-      return {
-        display: 'grid',
-        gridTemplateColumns: `repeat(${this.columns}, minmax(0, 1fr))`,
-        gap: '0px'
-      };
-    }
-  }
-};
-</script>
