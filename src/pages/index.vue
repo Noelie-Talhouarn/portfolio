@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import Btn from '@/components/btn.vue';
 import Grille from '@/components/grille.vue'; 
 
-import Btn from '@/components/btn.vue'
 import { RouterLink, RouterView } from 'vue-router/auto'
 </script>
 
@@ -26,7 +26,7 @@ import { RouterLink, RouterView } from 'vue-router/auto'
         </p>
       </article>
       <article>
-        <Btn url="/about">En savoir plus</Btn> 
+        <Btn class="mt-5" url="/about" text="en savoir plus" variant="default" />
       </article>
     </section>
     <section>
@@ -47,7 +47,7 @@ import { RouterLink, RouterView } from 'vue-router/auto'
         </p>
       </article>
       <article>
-        <Btn url="/contact">C'est par ici</Btn> 
+        <Btn class="mt-5" url="/contact" text="Me contacter" variant="default" />
       </article>
     </section>
   </section>
