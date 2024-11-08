@@ -13,7 +13,7 @@
 
 @layer base {
   body {
-    @apply text-base leading-normal lg:text-xl;
+    @apply text-base leading-normal lg:text-lg;
   }
 
   h1 {
@@ -21,10 +21,10 @@
   }
 
   h2 {
-    @apply font-roboto-mono text-4xl font-semibold leading-tight;
+    @apply font-roboto-mono text-xl lg:text-3xl font-semibold leading-tight;
   }
 
   h3 {
-    @apply text-lg font-bold leading-tight lg:text-2xl;
+    @apply font-roboto-mono text-lg font-bold leading-tight lg:text-2xl;
   }
 }
