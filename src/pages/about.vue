@@ -12,6 +12,7 @@ import IconTrello from '@/components/icons/IconTrello.vue'
 import IconVuejs from '@/components/icons/IconVuejs.vue'
 import IconWordpress from '@/components/icons/IconWordpress.vue'
 import { RouterLink, RouterView } from 'vue-router/auto'
+
 </script>
 
 <template>
