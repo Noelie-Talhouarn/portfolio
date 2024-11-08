@@ -44,6 +44,7 @@ export type ContactRecord = {
 }
 
 export type ProjetsRecord = {
+	categorie?: string
 	date_projet?: number
 	description_projet?: string
 	domaines1?: string
