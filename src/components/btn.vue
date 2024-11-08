@@ -1,7 +1,27 @@
+<script setup lang="ts">
+
+const props = withDefaults( 
+	defineProps<{
+		variant?: 'default' 
+	  url?: string
+	  text?: string
+	}>(),
+  { variant: 'default' }
+)
+
+const variantClass = {
+  default: 'bg-mauve rounded-md text-black',
+  
+}
+
+</script>
+
 <template>
-    <div
-  class="flex justify-center items-center relative gap-2.5 px-[18px] py-2.5 rounded-[10px] bg-[#b196d0]"
->
-  <p class="flex-grow-0 flex-shrink-0 text-base font-bold text-left text-black">découvrir</p>
-</div>
+  <RouterLink
+		class="inline-flex items-center gap-4 px-6 py-4 text-xs font-bold uppercase tracking-wide transition duration-300 ease-in-out lg:px-8 lg:py-6 lg:text-sm"
+		:class="variantClass[props.variant]"
+		:to="`${url}`">
+    <ArrowIcon :class="props.variant === 'default' ? 'stroke-black' : 'stroke-white'" />
+    {{ text }}
+  </RouterLink>
 </template>
