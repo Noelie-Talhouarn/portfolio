@@ -1,9 +1,19 @@
 <script setup lang="ts">
+//src/components/ImgPb.vue
 import { pb } from '@/backend'
 import { type RecordModel } from 'pocketbase'
 const props = defineProps<{
-  /** L'enregistrement 'complet' (id, collectionId) de PocketBase */
-  record: RecordModel
+  /** L'enregistrement 'complet' (id et collectionId ou collectionName) de PocketBase */
+  record: {
+    id: string
+  } & (
+    | {
+        collectionId: string
+      }
+    | {
+        collectionName: string
+      }
+  )
   /** La valeur du nom de fichier stocké dans la colonne de PocketBase */
   filename: string
   /** La largeur aussi utilisée pour fixer la largeur d'image demandée à PocketBase */
@@ -15,10 +25,10 @@ const props = defineProps<{
    */
   thumb?: string
 }>()
-const src = pb.getFileUrl(props.record, props.filename, {
+const src = pb.files.getUrl(props.record, props.filename, {
   thumb: props.thumb || `${props.width ?? 0}x${props.height ?? 0}`
 })
 </script>
 <template>
-  <img :src="src" :width="width" :height="height" />
+  <img class="max-w-80" :src="src" :width="width" :height="height" />
 </template>
