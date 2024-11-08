@@ -43,6 +43,7 @@ import { RouterLink, RouterView } from 'vue-router/auto'
             HTML, CSS et JavaScript et vue.js et taiwlind css, ainsi que ma connaissance de
             WordPress, sont des atouts qui sont pour moi important d’acquérir.
           </p>
+          <a class="font-bold text-mauve font-roboto-mono" href="/src/img/cv-portfolio-normandie-monteliard.pdf">Mon cv</a>
         </article>
       </article>
 
