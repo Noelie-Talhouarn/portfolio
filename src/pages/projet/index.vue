@@ -34,7 +34,7 @@ const setFilter = (newFilter: string) => {
     <h1 class="text-center pb-10">Mes <span class="text-mauve"> projets</span></h1>
     </section>
   <!-- Boutons de filtre -->
-  <section class="flex overflow-x-auto space-x-4 mb-6 py-2 lg:flex lg:justify-center ">
+  <section class="flex overflow-x-auto space-x-4 mb-6 py-2 justify-center ">
     
   
     <article>
