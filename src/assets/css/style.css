@@ -21,10 +21,53 @@
   }
 
   h2 {
-    @apply font-roboto-mono text-xl lg:text-3xl font-semibold leading-tight;
+    @apply font-ahsing text-xl lg:text-4xl leading-tight;
   }
 
   h3 {
-    @apply font-roboto-mono text-lg font-bold leading-tight lg:text-2xl;
+    @apply font-roboto-mono text-lg font-bold leading-tight lg:text-4xl;
   }
+  h4 {
+    @apply font-roboto-mono text-lg font-bold leading-tight lg:text-3xl;
+  }
+}
+
+@layer components {
+  .grid-mask {
+    @apply absolute top-0 left-0 w-full h-full;
+    background-image: 
+      linear-gradient(to right, #fff 1px, transparent 1px), 
+      linear-gradient(to bottom, #fff 1px, transparent 1px);
+    background-size: 70px 75px; /* Taille de la grille */
+    pointer-events: none; /* Empêche l'interaction */
+    z-index: 10;
+  }
+
+  .gradient-bg-hero {
+    @apply relative flex;
+    background: linear-gradient(183deg, #DBDFE1 36.49%, #630CAF 187.59%);
+    z-index: 0; /* Met le dégradé en arrière-plan */
+    
+  }
+
+  .no-grid {
+    background: linear-gradient(183deg, #DBDFE1 36.49%, #630CAF 187.59%);
+    z-index: 30; /* Priorité supérieure */
+  }
+
+.grid-titre {
+    @apply relative w-[400px] h-[140px]; /* Taille de la grille */
+    background-image: 
+      linear-gradient(to right, #fff 1px, transparent 1px), /* Lignes verticales */
+      linear-gradient(to bottom, #fff 1px, transparent 1px), /* Lignes horizontales */
+      linear-gradient(183deg, #DBDFE1 36.49%, #630CAF 187.59%); /* Dégradé de fond */;
+    background-size: 50px 50px, 50px 50px, 100% 100%; /* Ajuste les tailles */
+    background-blend-mode: screen; /* Combine les calques */
+  }
+
+  ::selection {
+  background-color: #BCA9D4; /* Couleur de fond pour la sélection */
+  color: #000; /* Couleur du texte sélectionné */
+} 
+
 }
