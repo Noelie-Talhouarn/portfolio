@@ -1,157 +1,139 @@
+<template>
+  <section class="flex justify-center  py-10">
+    <div class="w-full max-w-3xl p-10 ">
+      <h1 class="text-center text-4xl font-bold text-gray-700 mb-6">
+        <span class="text-black">Me </span><span class="text-purple-500">contacter</span>
+      </h1>
+      <p class="text-center text-gray-600 mb-10">
+        Pour toute question, collaboration ou simplement pour échanger, n'hésitez pas à me contacter via le formulaire ci-dessous. Je serai ravie de vous répondre dans les plus brefs délais !
+      </p>
+      <form @submit.prevent="handleSubmit" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div class="sm:col-span-1">
+          <label class="block text-base font-medium text-gray-700">Prénom</label>
+          <input
+            type="text"
+            v-model="formData.prenom_contact"
+            name="prenom_contact"
+            placeholder="ex : Lola"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-mauve hover:border-2 hover:border-mauve placeholder-gray-500"
+          />
+        </div>
+        <div class="sm:col-span-1">
+          <label class="block text-base font-medium text-gray-700">Nom</label>
+          <input
+            type="text"
+            v-model="formData.nom_contact"
+            name="nom_contact"
+            placeholder="ex : Durant"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-mauve hover:border-2 hover:border-mauve placeholder-gray-500"
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-base font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            v-model="formData.email_contact"
+            name="email_contact"
+            placeholder="ex : lola.durant@gmail.com"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-mauve hover:border-2 hover:border-mauve placeholder-gray-500"
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-base font-medium text-gray-700">Objet</label>
+          <input
+            type="text"
+            v-model="formData.objet_contact"
+            name="objet_contact"
+            placeholder="ex : Infos sur les tarifs"
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-mauve hover:border-2 hover:border-mauve placeholder-gray-500"
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-base font-medium text-gray-700">Message</label>
+          <textarea
+            v-model="formData.message_contact"
+            name="message_contact"
+            rows="5"
+            placeholder="ex : Bonjour, j'aimerais..."
+            required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-mauve hover:border-2 hover:border-mauve placeholder-gray-500"
+          ></textarea>
+        </div>
+        <div class="sm:col-span-2 flex justify-center">
+          <button type="submit" class="w-full sm:w-auto bg-purple-500 text-white py-3 px-6 rounded-md hover:bg-purple-600 transition duration-200">
+            Envoyer
+          </button>
+        </div>
+      </form>
+      <p v-if="responseMessage" class="mt-6 text-center text-gray-700">{{ responseMessage }}</p>
+    </div>
+  </section>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import PocketBase from 'pocketbase';
 
-// Initialiser PocketBase
-const pb = new PocketBase('https://portfolio-noelietalhouarn.pockethost.io/');
+// Initialisation de PocketBase
+const pb = new PocketBase('http://127.0.0.1:8090'); // Remplace par l'URL de ton instance PocketBase
 
-// État du formulaire
+// Champs du formulaire liés à PocketBase
 const formData = ref({
   nom_contact: '',
   prenom_contact: '',
   email_contact: '',
   objet_contact: '',
-  message_contact: ''
+  message_contact: '',
 });
 
-const isSubmitting = ref(false);
-const statusMessage = ref('');
-const messageType = ref<'success' | 'error'>('success');
+// Message de réponse après la soumission
+const responseMessage = ref('');
 
-// Fonction de soumission
-const handleSubmit = async (e: Event) => {
-  e.preventDefault();
-  
+const handleSubmit = async () => {
   try {
-    isSubmitting.value = true;
-    statusMessage.value = 'Envoi en cours...';
+    // Enregistrement dans PocketBase
+    await pb.collection('contact').create(formData.value);
     
-    // Créer un nouvel enregistrement dans PocketBase
-    await pb.collection('contact').create({
-      ...formData.value,
-      date: new Date().toISOString()
-    });
-
-    // Réinitialiser le formulaire
-    formData.value = {
-      nom_contact: '',
-      prenom_contact: '',
-      email_contact: '',
-      objet_contact: '',
-      message_contact: ''
+    // Préparation des données pour Web3Forms
+    const web3FormsData = {
+      access_key: '7ddb9634-765c-4c24-bcd6-3df399b17e7f', // Remplace par ta clé Web3Forms
+      subject: 'Nouveau message portfolio',
+      name: `${formData.value.prenom_contact} ${formData.value.nom_contact}`,
+      email: formData.value.email_contact,
+      message: formData.value.message_contact,
+      Object: formData.value.objet_contact,
+      botcheck: ''
     };
 
-    messageType.value = 'success';
-    statusMessage.value = 'Message envoyé avec succès ! Je vous répondrai dans les plus brefs délais.';
-    
+    // Envoi de l'email via Web3Forms
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(web3FormsData)
+    });
+
+    if (response.ok) {
+      responseMessage.value = 'Message envoyé avec succès !';
+      formData.value = {
+        nom_contact: '',
+        prenom_contact: '',
+        email_contact: '',
+        objet_contact: '',
+        message_contact: ''
+      };
+    } else {
+      responseMessage.value = 'Erreur lors de l\'envoi du message. Veuillez réessayer.';
+    }
   } catch (error) {
     console.error('Erreur:', error);
-    messageType.value = 'error';
-    statusMessage.value = 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
-  } finally {
-    isSubmitting.value = false;
-    
-    // Effacer le message de succès après 5 secondes
-    if (messageType.value === 'success') {
-      setTimeout(() => {
-        statusMessage.value = '';
-      }, 5000);
-    }
+    responseMessage.value = 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
   }
 };
 </script>
-
-<template>
-  <section class="justify-center text-black">
-    <div class="">
-      <h1 class="p-8 lg:text-center">Me <span class="text-mauve">contacter</span></h1>
-    </div>
-    
-    <div class="lg:mx-40">
-      <p class="p-8 font-normal lg:text-lg">
-        Pour toute question, collaboration ou simplement pour échanger, n'hésitez pas à me contacter via le formulaire ci-dessous. 
-        Je serai ravie de vous répondre dans les plus brefs délais !
-      </p>
-
-      <!-- Message de statut -->
-      <div v-if="statusMessage" 
-           :class="[
-             'text-center my-4 p-4 rounded-md',
-             messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-           ]">
-        {{ statusMessage }}
-      </div>
-    
-      <form @submit="handleSubmit" class="space-y-4 mx-6">
-        <div>
-          <label for="prenom" class="block text-base font-medium lg:text-lg">Prénom</label>
-          <input 
-            v-model="formData.prenom_contact"
-            type="text" 
-            id="prenom" 
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base" 
-            placeholder="ex : Lola"
-            required
-          >
-        </div>
-        
-        <div>
-          <label for="nom" class="block text-base font-medium lg:text-lg">Nom</label>
-          <input 
-            v-model="formData.nom_contact"
-            type="text" 
-            id="nom" 
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base" 
-            placeholder="ex : Durant"
-            required
-          >
-        </div>
-        
-        <div>
-          <label for="email" class="block text-base font-medium lg:text-lg">Email</label>
-          <input 
-            v-model="formData.email_contact"
-            type="email" 
-            id="email" 
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base" 
-            placeholder="ex : lola.durant@gmail.com"
-            required
-          >
-        </div>
-        
-        <div>
-          <label for="objet" class="block text-base font-medium lg:text-lg">Objet</label>
-          <input 
-            v-model="formData.objet_contact"
-            type="text" 
-            id="objet" 
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base" 
-            placeholder="ex : Infos sur les tarifs"
-            required
-          >
-        </div>
-        
-        <div>
-          <label for="message" class="block text-base font-medium lg:text-lg">Message</label>
-          <textarea 
-            v-model="formData.message_contact"
-            id="message" 
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-sm lg:text-base h-32" 
-            placeholder="ex : Bonjour, j'aimerai..."
-            required
-          ></textarea>
-        </div>
-        
-        <div class="flex justify-center items-center">
-          <button 
-            type="submit"
-            :disabled="isSubmitting"
-            class="px-6 py-2 bg-mauve text-white rounded-md hover:bg-opacity-90 transition-colors duration-200 disabled:opacity-50 mb-8 lg:mb-12"
-          >
-            {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer' }}
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-</template>
