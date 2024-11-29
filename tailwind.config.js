@@ -32,9 +32,9 @@ export default {
         'rounded-7': '1.9rem',
         'rounded-8': '2rem',
         'rounded-9': '2.8rem'
-      }
-    }
+      },
+      
   },
   plugins: []
 }
-
+}

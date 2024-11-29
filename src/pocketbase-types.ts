@@ -6,6 +6,7 @@ import type PocketBase from 'pocketbase'
 import type { RecordService } from 'pocketbase'
 
 export enum Collections {
+	Cards = "cards",
 	Contact = "contact",
 	Projets = "projets",
 	Users = "users",
@@ -35,6 +36,18 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
+export type CardsRecord = {
+	categorie?: string
+	date_projet?: number
+	description_projet?: string
+	domaines1?: string
+	domaines2?: string
+	domaines3?: string
+	img?: string
+	nom_projet?: string
+	projet?: RecordIdString
+}
+
 export type ContactRecord = {
 	email_contact?: string
 	message_contact?: string
@@ -44,14 +57,30 @@ export type ContactRecord = {
 }
 
 export type ProjetsRecord = {
-	categorie?: string
-	date_projet?: number
-	description_projet?: string
-	domaines1?: string
-	domaines2?: string
-	domaines3?: string
-	img?: string
-	nom_projet?: string
+	date?: string
+	description2?: string
+	description3?: string
+	description4?: string
+	description5?: string
+	description6?: string
+	description7?: string
+	description?: string
+	img1?: string
+	img2?: string
+	img3?: string
+	img4?: string
+	img5?: string
+	img6?: string
+	img7?: string
+	intertitre1?: string
+	intertitre2?: string
+	intertitre3?: string
+	intertitre?: string
+	mockups?: string[]
+	outils?: string[]
+	soustitre1?: string
+	soustitre2?: string
+	titre?: string
 }
 
 export type UsersRecord = {
@@ -60,6 +89,7 @@ export type UsersRecord = {
 }
 
 // Response types include system fields and match responses from the PocketBase API
+export type CardsResponse<Texpand = unknown> = Required<CardsRecord> & BaseSystemFields<Texpand>
 export type ContactResponse<Texpand = unknown> = Required<ContactRecord> & BaseSystemFields<Texpand>
 export type ProjetsResponse<Texpand = unknown> = Required<ProjetsRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
@@ -67,12 +97,14 @@ export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSyste
 // Types containing all Records and Responses, useful for creating typing helper functions
 
 export type CollectionRecords = {
+	cards: CardsRecord
 	contact: ContactRecord
 	projets: ProjetsRecord
 	users: UsersRecord
 }
 
 export type CollectionResponses = {
+	cards: CardsResponse
 	contact: ContactResponse
 	projets: ProjetsResponse
 	users: UsersResponse
@@ -82,6 +114,7 @@ export type CollectionResponses = {
 // https://github.com/pocketbase/js-sdk#specify-typescript-definitions
 
 export type TypedPocketBase = PocketBase & {
+	collection(idOrName: 'cards'): RecordService<CardsResponse>
 	collection(idOrName: 'contact'): RecordService<ContactResponse>
 	collection(idOrName: 'projets'): RecordService<ProjetsResponse>
 	collection(idOrName: 'users'): RecordService<UsersResponse>

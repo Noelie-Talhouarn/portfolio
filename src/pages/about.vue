@@ -19,7 +19,7 @@ import { RouterLink, RouterView } from 'vue-router/auto'
   <section class="px-8">
     <section>
       <article class="wrapper">
-        <h1 class="lg:text-center"><span class="text-mauve">A propos</span> de moi</h1>
+        <h1 class="lg:text-center grid-titre gradient-bg-titre ">A propos</h1>
       </article>
       <article class="lg:grid lg:grid-cols-2 lg:items-center lg:justify-center">
         <article class="">

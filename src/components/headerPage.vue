@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import GithubIcon from './icons/githubIcon.vue';
 import LinkedinIcon from './icons/linkedinIcon.vue';
 import InstagramIcon from './icons/instagramIcon.vue';
+import Login from './login.vue';
 
 
 const activeMenu = ref(false)
@@ -71,6 +72,9 @@ function closeMenu() {
             >A propos</RouterLink
           >
         </li>
+        <li>
+          
+        </li>
       <ul class="flex gap-12 justify-center lg:hidden">
         <li>
           <a href="https://github.com/Noelie-Talhouarn" aria-label="Github"
@@ -93,6 +97,7 @@ function closeMenu() {
     </nav>
   </header>
   <main class="pt-20">
+    
   </main>
 </template>
 

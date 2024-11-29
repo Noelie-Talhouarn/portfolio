@@ -1,90 +1,114 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { pb } from '@/backend';
-import type { ProjetsResponse } from '@/pocketbase-types';
+import type { CardsResponse, ProjetsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
+import Btn from '@/components/btn.vue';
 
-// Charger la liste des projets
+// Charger la liste complète des cartes et des projets depuis PocketBase
+const listCard = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' });
 const listProjet = await pb.collection('projets').getFullList<ProjetsResponse>();
 
-// Etat du filtre actuel
-const filter = ref('Tous');
-
-// Liste des filtres disponibles
-const categories = ['Tous', 'Design', 'Dev', 'Projet scolaire', 'Projet personnel'];
-
-// Liste des projets filtrés
-const filteredProjects = computed(() => {
-  if (filter.value === 'Tous') {
-    return listProjet;
-  } else {
-    return listProjet.filter(projet => projet.categorie === filter.value);
-  }
+// Associer chaque card au projet correspondant
+const listCardWithProjet = listCard.map((card) => {
+  const projet = listProjet.find((projet) => projet.id === card.projet); // Replace projet_id with the actual field linking card to project
+  return { ...card, projet: projet ? projet : null, projetId: projet?.id, expand: { projet } };
 });
 
-// Fonction pour changer de filtre
+// Définir le filtre actif
+const filter = ref('Tous');
+const categories = ['Tous', 'Dev', 'Design', 'Projet scolaire', 'Projet personnel'];
+
+// Appliquer le filtre et retourner les cartes filtrées
+const filteredProjects = computed(() => {
+  return filter.value === 'Tous'
+    ? listCardWithProjet
+    : listCardWithProjet.filter((card) => card.categorie === filter.value);
+});
+
+// Fonction pour changer le filtre
 const setFilter = (newFilter: string) => {
   filter.value = newFilter;
 };
-</script>
 
-<template>
-    <section>
-
-    <h1 class="text-center pb-10">Mes <span class="text-mauve"> projets</span></h1>
-    </section>
-  <!-- Boutons de filtre -->
-  <section class="flex overflow-x-auto space-x-4 mb-6 py-2 justify-center ">
+const fetchCards = async () => {
+  try {
+    const records = await pb.collection('cards').getFullList({
+      expand: 'projet', // Assurez-vous d'étendre la relation projet
+    });
     
-  
-    <article>
-    <button
-      v-for="category in categories"
-      :key="category"
-      @click="setFilter(category)"
-      :class="[
-        'py-2 px-4 rounded-full text-sm whitespace-nowrap mr-4',
-        filter === category ? 'bg-mauve text-black' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-      ]"
-    >
-      {{ category }}
-    </button>
-    </article>
-  </section>
+  } catch (error) {
+    console.error(error);
+  }
 
-  <!-- Liste de projets filtrés -->
-  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <li v-for="projet in filteredProjects" :key="projet.id" class="bg-white rounded-lg shadow-lg overflow-hidden w-full sm:w-80 mx-auto">
-      <!-- Image de Projet -->
-      <div class="relative">
-        <ImgPb :record="projet" :filename="projet.img"
-    >image du projet : {{ projet.img }}</ImgPb
-  >
-      </div>
-      
-      <!-- Contenu de la Carte -->
-      <div class="p-4">
-        <!-- Tags des Domaines à gauche et Date à droite -->
-        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
-          <div class="flex space-x-1">
-            <span v-if="projet.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full">{{ projet.domaines1 }}</span>
-            <span v-if="projet.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full">{{ projet.domaines2 }}</span>
-            <span v-if="projet.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full">{{ projet.domaines3 }}</span>
-          </div>
-          <span>{{ projet.date_projet }}</span>
+fetchCards();
+
+}
+</script>
+<template>
+  <section class="px-6">
+    <section class="">
+<div class="relative mx-auto pl-14">
+    <!-- Grille principale -->
+    <div class="grid-titre gradient-bg-titre"></div>
+    <!-- Ligne avec des cases -->
+    <div class="grid-line"></div>
+    <!-- Texte superposé -->
+    <h1 class=" relative -top-28">Mes Projets</h1>
+  </div>
+      <!-- Filtrage avec un menu déroulant sur mobile, et boutons sur écran plus large -->
+      <section class="mb-6 py-2 lg:flex lg:justify-center lg:space-x-4">
+        <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded text-sm bg-gray-200">
+          <option v-for="category in categories" :key="category" :value="category">
+            {{ category }}
+          </option>
+        </select>
+
+        <div class="hidden lg:flex">
+          <button
+            v-for="category in categories"
+            :key="category"
+            @click="setFilter(category)"
+            :class="[ 
+              'py-2 px-4 rounded-full text-sm', 
+              filter === category ? 'bg-mauve text-black' : 'bg-gray-200 text-gray-800 hover:bg-gray-300' 
+            ]"
+          >
+            {{ category }}
+          </button>
         </div>
-        
-        <!-- Nom du Projet -->
-        <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-1">{{ projet.nom_projet }}</h3>
-        
-        <!-- Description -->
-        <p class="text-gray-700 text-sm mb-4">{{ projet.description_projet }}</p>
-        
-        <!-- Bouton Découvrir en bas -->
-        <button class="bg-mauve text-black px-3 py-2 rounded-md hover:bg-purple-600 transition-colors duration-200 text-sm w-full">
-          découvrir
-        </button>
+      </section>
+
+      <!-- Liste des projets filtrés -->
+      <div class="flex flex-wrap gap-6 justify-center">
+        <div v-for="card in filteredProjects" :key="card.id" class="bg-white rounded-lg shadow-lg overflow-hidden w-full sm:w-80">
+          <!-- Image du projet -->
+          <ImgPb :record="card" :filename="card.img" class="w-full h-auto object-cover" alt="Image du projet" />
+
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <div class="flex space-x-1">
+                <span v-if="card.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines1 }}</span>
+                <span v-if="card.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines2 }}</span>
+                <span v-if="card.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines3 }}</span>
+              </div>
+              <span class="text-sm text-gray-500">{{ card.date_projet }}</span>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h3>
+            <p class="text-gray-700 text-sm mb-4">{{ card.description_projet }}</p>
+
+            <!-- Bouton découvrir avec lien dynamique vers la page du projet spécifique -->
+            <div class="text-center">
+<Btn 
+      class="mb-4" 
+      :url="`/projet/${card.expand?.projet?.id}`" 
+      text="Voir plus" 
+    /></div>
+
+          </div>
+        </div>
       </div>
-    </li>
-  </ul>
+    </section>
+  </section>
 </template>
