@@ -5,7 +5,7 @@ import { ref } from 'vue'
 /* import Button from '@/components/Button.vue'
  */import { useRoute } from 'vue-router'
 
-const route = useRoute()
+const route = useRoute('/projet/[id]')
 const unProjet = ref()
 
 // Récupérer les informations du projet en fonction de son ID
@@ -14,7 +14,7 @@ unProjet.value = await pb.collection('projets').getOne(route.params.id)
 // Charger les images du projet
 const imgPb = ref()
 if (unProjet.value.img) {
-  imgPb.value = unProjet.value.img.map((image) => pb.getFileUrl(unProjet.value, image))
+  imgPb.value = unProjet.value.img.map((image: any) => pb.getFileUrl(unProjet.value, image))
 }
 
 /* import { useHead } from '@unhead/vue'
