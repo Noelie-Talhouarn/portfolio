@@ -1,23 +1,38 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import { computed } from 'vue';
 import Btn from '@/components/btn.vue';
-import Grille from '@/components/grille.vue'; 
+import { pb } from '@/backend';
+import type { CardsResponse } from '@/pocketbase-types';
+import ImgPb from '@/components/ImgPb.vue';
+import Login from '@/components/login.vue';
 
-import { RouterLink, RouterView } from 'vue-router/auto'
+// Charger la liste complète des projets depuis PocketBase
+const listProjet = await pb.collection('cards').getFullList<CardsResponse>();
+
+// Extraire uniquement le dernier projet
+const lastProject = computed(() => listProjet.slice(-1));
 </script>
 
 <template>
-  <section>
-    
-  </section>
-  <Grille />
-    <!-- <div class="p-4">
-    <Grid :columns="8" :rows="8" />
-  </div> --> 
-  <section class="p-8">
-    <section>
+ <section class="gradient-bg-hero h-[520px] w-full relative z-30">
+  <!-- Zone texte -->
+  <div class="no-grid">
+    <div class="absolute top-0 left-0 z-40 p-10">
+      <h1 class="">Noélie Talhouarn</h1>
+      <h3 class="">Développeuse web</h3>
+    </div>
+  </div>
+
+  <!-- Grille sur toute la section -->
+  <div class="grid-mask"></div>
+</section>
+
+
+  <section class="px-20">
+    <section class="">
       <article>
-        <h2>A propos de moi</h2>
+        <h4 class="">A propos de moi</h4>
       </article>
       <article>
         <p>
@@ -29,15 +44,44 @@ import { RouterLink, RouterView } from 'vue-router/auto'
         <Btn class="mt-5" url="/about" text="en savoir plus" variant="default" />
       </article>
     </section>
+
     <section>
       <article>
-        <h2>Derniers projets</h2>
+        <h4>Dernier projet</h4>
       </article>
-      <article>carrousel</article>
+      <article v-if="lastProject.length">
+        <!-- Affichage direct du dernier projet -->
+        <div v-for="card in lastProject" :key="card.id" class="bg-white rounded-lg shadow-lg overflow-hidden w-full sm:w-80 p-4">
+          <!-- Image du projet -->
+          <ImgPb :record="card" :filename="card.img" class="w-full h-auto object-cover rounded-t-lg" alt="Image du projet" />
+
+          <div class="p-4">
+            <!-- Tags des domaines et année -->
+            <div class="flex justify-between items-center mb-2">
+              <div class="flex space-x-2">
+                <span v-if="card.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines1 }}</span>
+                <span v-if="card.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines2 }}</span>
+                <span v-if="card.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines3 }}</span>
+              </div>
+              <span class="text-sm text-gray-500">{{ card.date_projet }}</span>
+            </div>
+
+            <!-- Titre et description du projet -->
+            <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
+            <p class="text-gray-700 text-sm mb-4">{{ card.description_projet }}</p>
+
+            <!-- Bouton découvrir -->
+            <div class="text-center">
+              <Btn url="/projet/[id]" text="découvrir" variant="default" class="bg-mauve text-black px-4 py-2 rounded-md hover:bg-purple-600 transition-colors duration-200 text-sm" />
+            </div>
+          </div>
+        </div>
+      </article>
     </section>
+
     <section>
       <article>
-        <h2>On collabore ?</h2>
+        <h4>On collabore ?</h4>
       </article>
       <article>
         <p>
@@ -51,5 +95,12 @@ import { RouterLink, RouterView } from 'vue-router/auto'
       </article>
     </section>
   </section>
+  <Login />
 </template>
 
+<style>
+
+.bg-titre {
+  background-image: linear-gradient(183deg, #DBE0E1 36.49%, #B49BD1 187.59%);
+}
+</style>
