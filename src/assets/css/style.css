@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: "Ahsing";
-    src: url('@assets/font/Ahsing-Regular.woff') format('woff'),
-         url('@assets/font/Ahsing-Regular.woff2') format('woff2');
+    src: url('public/font/Ahsing-Regular.woff') format('woff'),
+         url('public/font/Ahsing-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -17,7 +17,7 @@
   }
 
   h1 {
-    @apply font-spicy-rice text-6xl leading-tight lg:text-7xl;
+    @apply font-ahsing text-6xl leading-tight lg:text-7xl;
   }
 
   h2 {

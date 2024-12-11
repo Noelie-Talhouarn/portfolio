@@ -1,31 +1,89 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, onMounted, watch } from 'vue';
 import Btn from '@/components/btn.vue';
 import { pb } from '@/backend';
 import type { CardsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
 import Login from '@/components/login.vue';
+import gsap from 'gsap';
+import { useMouse } from '@vueuse/core';
 
 // Charger la liste complète des projets depuis PocketBase
 const listProjet = await pb.collection('cards').getFullList<CardsResponse>();
 
 // Extraire uniquement le dernier projet
 const lastProject = computed(() => listProjet.slice(-1));
+
+// Afficher 2 projets au maximum
+const visibleProjects = computed(() => listProjet.slice(-2));
+
+const showLogin = ref(false) // Par défaut, le formulaire est caché
+
+const { x, y } = useMouse()
+
+onMounted(() => {
+  gsap.set('.circle', { xPercent: -50, yPercent: -50 })
+  gsap.set('.circle-trail', { xPercent: -50, yPercent: -50 })
+  
+  // Create trail elements
+  const trailCount = 5
+  const trailContainer = document.querySelector('.grid-mask')
+  for (let i = 0; i < trailCount; i++) {
+    const trail = document.createElement('div')
+    trail.className = `circle-trail size-24 absolute bg-black blur-xl z-30 top-0 left-0mix-blend-mode-difference opacity-${20 - i * 4}`
+    trailContainer?.appendChild(trail)
+  }
+
+  // Set initial positions
+  gsap.set('.circle-trail', { xPercent: -50, yPercent: -50 })
+
+  watch([x,y], () => {
+    // Animate main circle
+    gsap.to('.circle', {
+      x: x.value,
+      y: y.value,
+      duration: 0.5,
+    })
+
+    // Animate trails with delay
+    gsap.to('.circle-trail', {
+      x: x.value,
+      y: y.value,
+      duration: 0.3,
+      stagger: 0.05,
+    })
+  })
+})
 </script>
 
 <template>
- <section class="gradient-bg-hero h-[520px] w-full relative z-30">
+ <section class="gradient-bg-hero h-[520px] w-full relative z-30 hero">
+  
   <!-- Zone texte -->
   <div class="no-grid">
     <div class="absolute top-0 left-0 z-40 p-10">
-      <h1 class="">Noélie Talhouarn</h1>
-      <h3 class="">Développeuse web</h3>
+<h1 
+  class="text-4xl font-bold opacity-0 translate-x-full animate-slide-in text-center"
+>
+  Noélie Talhouarn
+</h1>
+<h3 
+  class="text-2xl font-light opacity-0 translate-x-full animate-slide-in text-center mt-4"
+  style="animation-delay: 0.5s;"
+>
+  Développeuse web
+</h3>
+
+
     </div>
   </div>
 
   <!-- Grille sur toute la section -->
-  <div class="grid-mask"></div>
+  <div class="grid-mask overflow-hidden">
+    <div class="w-full h-full bg-white relative z-30"></div>
+    <div class="size-24 absolute bg-black blur-xl top-0 left-0 z-40 circle mix-blend-mode-difference"></div>
+  </div>
 </section>
 
 
@@ -46,38 +104,44 @@ const lastProject = computed(() => listProjet.slice(-1));
     </section>
 
     <section>
-      <article>
-        <h4>Dernier projet</h4>
-      </article>
-      <article v-if="lastProject.length">
-        <!-- Affichage direct du dernier projet -->
-        <div v-for="card in lastProject" :key="card.id" class="bg-white rounded-lg shadow-lg overflow-hidden w-full sm:w-80 p-4">
-          <!-- Image du projet -->
-          <ImgPb :record="card" :filename="card.img" class="w-full h-auto object-cover rounded-t-lg" alt="Image du projet" />
+  <article>
+    <h4>Derniers projets</h4>
+  </article>
+  <article>
+ <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <div
+    v-for="card in visibleProjects"
+    :key="card.id"
+    class="bg-white rounded-lg shadow-lg overflow-hidden p-4"
+  >
+        <!-- Image du projet -->
+        <ImgPb :record="card" :filename="card.img" class="w-full h-auto object-cover rounded-t-lg" alt="Image du projet" />
 
-          <div class="p-4">
-            <!-- Tags des domaines et année -->
-            <div class="flex justify-between items-center mb-2">
-              <div class="flex space-x-2">
-                <span v-if="card.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines1 }}</span>
-                <span v-if="card.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines2 }}</span>
-                <span v-if="card.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines3 }}</span>
-              </div>
-              <span class="text-sm text-gray-500">{{ card.date_projet }}</span>
+        <div class="p-4">
+          <!-- Tags des domaines -->
+          <div class="flex justify-between items-center mb-2">
+            <div class="flex space-x-2">
+              <span v-if="card.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines1 }}</span>
+              <span v-if="card.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines2 }}</span>
+              <span v-if="card.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines3 }}</span>
             </div>
+            <span class="text-sm text-gray-500">{{ card.date_projet }}</span>
+          </div>
 
-            <!-- Titre et description du projet -->
-            <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
-            <p class="text-gray-700 text-sm mb-4">{{ card.description_projet }}</p>
+          <!-- Titre et description -->
+          <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
+          <p class="text-gray-700 text-sm mb-4">{{ card.description_projet }}</p>
 
-            <!-- Bouton découvrir -->
-            <div class="text-center">
-              <Btn url="/projet/[id]" text="découvrir" variant="default" class="bg-mauve text-black px-4 py-2 rounded-md hover:bg-purple-600 transition-colors duration-200 text-sm" />
-            </div>
+          <!-- Bouton découvrir -->
+          <div class="text-center">
+            <Btn url="/projet/[id]" text="découvrir" variant="default" class="bg-mauve text-black px-4 py-2 rounded-md hover:bg-purple-600 transition-colors duration-200 text-sm" />
           </div>
         </div>
-      </article>
-    </section>
+      </div>
+    </div>
+  </article>
+</section>
+
 
     <section>
       <article>
@@ -95,7 +159,13 @@ const lastProject = computed(() => listProjet.slice(-1));
       </article>
     </section>
   </section>
-  <Login />
+  <div 
+  @click="showLogin = true" 
+  class="w-10 h-10 bg-transparent absolute top-0 right-0 cursor-pointer"
+  aria-label="Zone secrète"
+>
+</div>
+
 </template>
 
 <style>
@@ -103,4 +173,21 @@ const lastProject = computed(() => listProjet.slice(-1));
 .bg-titre {
   background-image: linear-gradient(183deg, #DBE0E1 36.49%, #B49BD1 187.59%);
 }
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(100vw); /* Départ complètement à droite */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Arrive à la position finale */
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in-from-right 1.5s ease-out forwards; /* Durée et fluidité */
+}
+
+
 </style>
