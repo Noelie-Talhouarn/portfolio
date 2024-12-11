@@ -108,6 +108,7 @@ onMounted(() => {
     <h4>Derniers projets</h4>
   </article>
   <article>
+    <Card />
  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <div
     v-for="card in visibleProjects"
@@ -134,7 +135,11 @@ onMounted(() => {
 
           <!-- Bouton découvrir -->
           <div class="text-center">
-            <Btn url="/projet/[id]" text="découvrir" variant="default" class="bg-mauve text-black px-4 py-2 rounded-md hover:bg-purple-600 transition-colors duration-200 text-sm" />
+     <Btn 
+  class="mb-4" 
+  :url="`/projet/${card.expand?.projet?.id}`" 
+  text="Voir plus" 
+/>
           </div>
         </div>
       </div>
