@@ -1,18 +1,15 @@
 <template>
   <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="text-center mb-6">
-      <h1 class="text-4xl font-bold text-black">
-        Me <span class="text-purple-500 italic">contacter</span>
+    <div class=" mb-6">
+      <h1 class=" text-black text-center">
+        Me <span class="text-mauve">contacter</span>
       </h1>
-      <p class="text-gray-600 mt-2">
+      <p class="mt-7">
         Pour toute question, collaboration ou simplement pour échanger, n'hésitez pas à me contacter
         via le formulaire ci-dessous. Je serai ravie de vous répondre dans les plus brefs délais !
       </p>
     </div>
-    <form
-      @submit.prevent="submitForm"
-      class="bg-white shadow-md rounded-lg p-6 space-y-4"
-    >
+    <form class="bg-white shadow-md rounded-lg p-6 space-y-4">
       <div>
         <label for="name" class="block text-gray-700 font-bold mb-2">Nom</label>
         <input
@@ -74,12 +71,12 @@
       </div>
 
       <div class="text-center">
-        <button
-          type="submit"
-          class="bg-purple-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-600 transition duration-300"
-        >
-          Envoyer
-        </button>
+        <!-- Utilisation de votre composant Btn -->
+        <Btn
+          url="/contact"
+          text="Envoyer"
+          @click="submitForm"
+        />
       </div>
     </form>
   </div>
@@ -87,6 +84,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import Btn from '@/components/btn.vue'; // Assurez-vous que le chemin est correct
 
 const WEB3FORMS_ACCESS_KEY = "7ddb9634-765c-4c24-bcd6-3df399b17e7f";
 const name = ref("");
@@ -95,25 +93,44 @@ const email = ref("");
 const objet = ref("");
 const message = ref("");
 
-const submitForm = async () => {
-  const response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      access_key: WEB3FORMS_ACCESS_KEY,
-      name: name.value,
-      prenom: prenom.value,
-      email: email.value,
-      objet: objet.value,
-      message: message.value,
-    }),
-  });
-  const result = await response.json();
-  if (result.success) {
-    console.log(result);
+const submitForm = async (event?: Event) => {
+  if (event) {
+    event.preventDefault(); // Empêche le comportement par défaut de rechargement de la page
+  }
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: name.value,
+        prenom: prenom.value,
+        email: email.value,
+        objet: objet.value,
+        message: message.value,
+      }),
+    });
+    const result = await response.json();
+    if (result.success) {
+      console.log("Message envoyé avec succès :", result);
+      alert("Votre message a été envoyé avec succès !");
+      // Réinitialiser les champs du formulaire
+      name.value = "";
+      prenom.value = "";
+      email.value = "";
+      objet.value = "";
+      message.value = "";
+    } else {
+      console.error("Erreur lors de l'envoi du message :", result);
+      alert("Une erreur s'est produite. Veuillez réessayer.");
+    }
+  } catch (error) {
+    console.error("Erreur réseau ou système :", error);
+    alert("Une erreur réseau s'est produite. Veuillez réessayer.");
   }
 };
 </script>
