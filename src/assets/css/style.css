@@ -17,7 +17,7 @@
   }
 
   h1 {
-    @apply font-ahsing text-6xl leading-tight lg:text-7xl;
+    @apply font-spicy-rice text-6xl leading-tight lg:text-7xl;
   }
 
   h2 {
@@ -35,10 +35,10 @@
 @layer components {
   .grid-mask {
     @apply absolute top-0 left-0 w-full h-full;
-    background-image: 
+    mask-image: 
       linear-gradient(to right, #fff 1px, transparent 1px), 
       linear-gradient(to bottom, #fff 1px, transparent 1px);
-    background-size: 70px 75px; /* Taille de la grille */
+    mask-size: 70px 75px; /* Taille de la grille */
     pointer-events: none; /* Empêche l'interaction */
     z-index: 10;
   }

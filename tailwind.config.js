@@ -19,6 +19,7 @@ export default {
       },
       fontFamily: {
         'roboto-mono': 'Roboto Mono',
+        'spicy-rice': 'Spicy Rice',
         ahsing: 'Ahsing'
       },
       borderRadius: {
