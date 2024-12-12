@@ -13,26 +13,33 @@ import IconInstagram from './icons/IconInstagram.vue'
       <nav
         class="gap-8 space-y-8 px-5 *:break-inside-avoid *:space-y-3  lg:col-start-3 lg:columns-3 lg:px-0 lg:flex lg:justify-center"
       >
-        <ul class="flex justify-center gap-12">
-          <li>
-            <a href="https://github.com/Noelie-Talhouarn" aria-label="Github"><IconGithub /></a>
-          
-        </li>
-          <li>
-            <a href="https://www.linkedin.com/in/noelie-talhouarn/" aria-label="Linkedin"
-              ><LinkedinIcon
-            /></a>
+        <ul class="flex justify-center items-center gap-12">
+          <li class="flex items-center">
+            <a href="https://github.com/Noelie-Talhouarn" aria-label="Github" class="flex items-center">
+              <IconGithub class="" />
+            </a>
           </li>
-          <li>
-            <a href="https://www.instagram.com/noelie.tl_/" aria-label="Instagram"
-              ><IconInstagram
-            /></a>
+          <li class="flex items-center ">
+            <a href="https://www.linkedin.com/in/noelie-talhouarn/" aria-label="Linkedin" class="flex items-center">
+              <LinkedinIcon class="" />
+            </a>
+          </li>
+          <li class="flex items-center ">
+            <a href="https://www.instagram.com/noelie.tl_/" aria-label="Instagram" class="flex items-center">
+              <IconInstagram class="" />
+            </a>
           </li>
         </ul>
       </nav>
       <div>
-        <p class="text-center text-xs lg:text-base">©2024 Noélie Talhouarn.</p>
-      </div>
+        <p class="text-center text-xs lg:text-base mt-4">©2024 Noélie Talhouarn.</p>
+ 
+    </div>
+       <RouterLink
+            class="block py-2 rounded-lg lg:hover:underline"
+            to="/login"
+           
+            >Connexion admin</RouterLink>
     </div>
   </footer>
 </template>
