@@ -5,7 +5,6 @@ import Btn from '@/components/btn.vue';
 import { pb } from '@/backend';
 import type { CardsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
-import Login from '@/components/login.vue';
 import gsap from 'gsap';
 import { useMouse } from '@vueuse/core';
 import CardAccueil from '@/components/cardAccueil.vue';
@@ -84,36 +83,37 @@ onMounted(() => {
 </section>
 
 
-  <section class="px-20">
-    <section class="">
-      <article>
-        <h4 class="">A propos de moi</h4>
-      </article>
-      <article>
-        <p>
-          Je suis Noélie et je suis étudiante en BUT du multimédia et de l’internet à Montbéliard.
-          Actuellement en deuxième année, je suis spécialisée dans le développement web.
-        </p>
-      </article>
-      <article>
-        <Btn class="mt-5" url="/about" text="en savoir plus" variant="default" />
-      </article>
-    </section>
-
-    <section>
+<section class="flex flex-col justify-center max-w-2xl mx-auto pt-20 px-8">
   <article>
-    <h4>Derniers projets</h4>
+    <h4 class=" mb-6">A propos de moi</h4>
   </article>
   <article>
+    <p class="mb-6">
+      Je suis Noélie et je suis étudiante en BUT du multimédia et de l'internet à Montbéliard.
+      Actuellement en deuxième année, je suis spécialisée dans le développement web.
+    </p>
+  </article>
+  <article>
+    <Btn class="" url="/about" text="en savoir plus" variant="default" />
+  </article>
+</section>
+
+<section class=" ">
+    <section class=" ">
+  <article class="flex flex-col justify-center max-w-2xl mx-auto pt-16 mb-6 px-8">
+    <h4>Derniers projets</h4>
+  </article>
+  <article class="">
     <CardAccueil />
  
   </article>
 </section>
+</section>
 
 
-    <section>
+    <section class="flex flex-col justify-center max-w-2xl mx-auto py-16 px-8">
       <article>
-        <h4>On collabore ?</h4>
+        <h4 class="mb-6">On collabore ?</h4>
       </article>
       <article>
         <p>
@@ -122,17 +122,10 @@ onMounted(() => {
           solutions web performantes !
         </p>
       </article>
-      <article>
-        <Btn class="mt-5" url="/contact" text="Me contacter" variant="default" />
+      <article class="mt-5">
+        <Btn class="" url="/contact" text="Me contacter" variant="default" />
       </article>
     </section>
-  </section>
-  <div 
-  @click="showLogin = true" 
-  class="w-10 h-10 bg-transparent absolute top-0 right-0 cursor-pointer"
-  aria-label="Zone secrète"
->
-</div>
-
+  
 </template>
 
