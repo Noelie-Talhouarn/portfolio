@@ -61,23 +61,17 @@ onMounted(() => {
  <section class="gradient-bg-hero h-[520px] w-full relative z-30 hero">
   
   <!-- Zone texte -->
-  <div class="no-grid">
-    <div class="absolute top-0 left-0 z-40 p-10">
-<h1 
-  class="text-4xl font-bold opacity-0 translate-x-full animate-slide-in text-center"
->
-  Noélie Talhouarn
-</h1>
-<h3 
-  class="text-2xl font-light opacity-0 translate-x-full animate-slide-in text-center mt-4"
-  style="animation-delay: 0.5s;"
->
-  Développeuse web
-</h3>
-
-
-    </div>
+<div class="absolute inset-0 flex items-center justify-center z-40 lg:-mt-20 md:-mt-[70px]">
+  <div class="text-center">
+  
+    <h1 class="lg:text-8xl">Noélie<span class=""> Talhouarn</span></h1>
+   
+   
+    <h2 class="lg:mt-7 md:mt-11 mt-8 ">Développeuse web</h2>
+    
   </div>
+</div>
+
 
   <!-- Grille sur toute la section -->
   <div class="grid-mask overflow-hidden">
@@ -173,26 +167,3 @@ onMounted(() => {
 
 </template>
 
-<style>
-
-.bg-titre {
-  background-image: linear-gradient(183deg, #DBE0E1 36.49%, #B49BD1 187.59%);
-}
-
-@keyframes slide-in-from-right {
-  from {
-    opacity: 0;
-    transform: translateX(100vw); /* Départ complètement à droite */
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0); /* Arrive à la position finale */
-  }
-}
-
-.animate-slide-in {
-  animation: slide-in-from-right 1.5s ease-out forwards; /* Durée et fluidité */
-}
-
-
-</style>
