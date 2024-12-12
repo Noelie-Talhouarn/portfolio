@@ -18,8 +18,10 @@ import { RouterLink, RouterView } from 'vue-router/auto'
 <template>
   <section class="px-8">
     <section>
-      <article class="wrapper">
-        <h1 class="lg:text-center grid-titre gradient-bg-titre ">A propos</h1>
+      <article>
+     <h1 class=" text-black text-center">
+        A <span class="text-mauve">Propos</span>
+      </h1>
       </article>
       <article class="lg:grid lg:grid-cols-2 lg:items-center lg:justify-center">
         <article class="">
@@ -30,7 +32,7 @@ import { RouterLink, RouterView } from 'vue-router/auto'
           />
         </article>
 
-        <article class="lg:mr-20">
+        <article class="lg:mr-20 lg:mb-10">
           <p class="lg:mb-5 lg:mt-14">
             Je suis Noélie, j’ai 19 ans et je suis étudiante en 2ème année de BUT MMI (Métier du
             multimédia et de l’internet).
@@ -52,8 +54,8 @@ import { RouterLink, RouterView } from 'vue-router/auto'
   <!-- Section Compétences -->
   <section class="py-8 flex justify-center">
     <article class="max-w-7xl w-full">
-      <h2 class="text-2xl font-semibold mb-6 lg:ml-14">
-        Mes <span class="text-mauve">compétences</span>
+      <h2 class=" mb-6 lg:ml-14">
+        Mes <span class="text-mauve ">compétences</span>
       </h2>
 
       <article class="mt-6 grid grid-cols-2 gap-8 justify-items-center lg:grid-cols-4 lg:justify-items-center">
