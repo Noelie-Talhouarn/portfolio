@@ -55,7 +55,9 @@ fetchCards();
     <div class="grid-line"></div>
     <!-- Texte superposé -->
     <h1 class=" relative -top-28">Mes Projets</h1>
+    
   </div>
+  
       <!-- Filtrage avec un menu déroulant sur mobile, et boutons sur écran plus large -->
       <section class="mb-6 py-2 lg:flex lg:justify-center lg:space-x-4">
         <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded text-sm bg-gray-200">
