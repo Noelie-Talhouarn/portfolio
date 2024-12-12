@@ -29,34 +29,37 @@ defineProps<{
 </script>
 
 <template>
-   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-  <div
-    v-for="card in visibleProjects"
-    :key="card.id"
-    class="bg-white rounded-lg shadow-lg overflow-hidden p-4"
-  >
-        <!-- Image du projet -->
-        <ImgPb :record="card" :filename="card.img" class="w-full h-auto object-cover rounded-t-lg" alt="Image du projet" />
-
-        <div class="p-4">
-          <!-- Tags des domaines -->
-          <div class="flex justify-between items-center mb-2">
-            <div class="flex space-x-2">
-              <span v-if="card.domaines1" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines1 }}</span>
-              <span v-if="card.domaines2" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines2 }}</span>
-              <span v-if="card.domaines3" class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full text-xs">{{ card.domaines3 }}</span>
+    <div class="flex flex-wrap justify-center gap-16 max-w-6xl mx-auto px-4">
+    <div
+      v-for="card in visibleProjects"
+      :key="card.id"
+      class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300"
+    >
+      <ImgPb 
+        :record="card" 
+        :filename="card.img" 
+        class="w-full h-44 sm:h-48 md:h-52 object-cover rounded-t-3xl" 
+        alt="Image du projet" 
+      />
+      <div class="p-4 sm:p-6">
+        <!-- Tags des domaines -->
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex flex-wrap gap-4">
+              <span v-if="card.domaines1" class="border border-black px-4 py-2 text-black  rounded-full text-xs">{{ card.domaines1 }}</span>
+              <span v-if="card.domaines2" class="border border-black px-4 py-2 text-black  rounded-full text-xs">{{ card.domaines2 }}</span>
+              <span v-if="card.domaines3" class="border border-black px-4 py-2 text-black rounded-full text-xs">{{ card.domaines3 }}</span>
             </div>
-            <span class="text-sm text-gray-500">{{ card.date_projet }}</span>
+            <span class="text-sm text-black font-light">{{ card.date_projet }}</span>
           </div>
 
           <!-- Titre et description -->
           <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
-          <p class="text-gray-700 text-sm mb-4">{{ card.description_projet }}</p>
+          <p class="text-gray-700 text-sm mb-1">{{ card.description_projet }}</p>
 
           <!-- Bouton découvrir -->
-          <div class="text-center">
+          <div class="mt-4">
    <Btn 
-      class="mb-4" 
+      class="" 
       :url="card.projet ? `/projet/${card.projet}` : '#'" 
       text="Voir plus" 
     />
