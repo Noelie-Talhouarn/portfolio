@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { pb } from '@/backend'
+import Btn from '@/components/btn.vue';
 import ImgPb from '@/components/ImgPb.vue';
 import { ref } from 'vue'
 /* import Button from '@/components/Button.vue'
@@ -30,48 +31,100 @@ useHead({
 </script>
 
 <template>
-  <div>
-        <ImgPb :record="unProjet" :filename="unProjet.img1" class="w-full h-auto object-cover" alt="Image du projet" />
-    <h1 class="font-judson mt-4 ml-6 lg:text-center mb-6">{{ unProjet.titre }}</h1>
-    <div class="lg:grid lg:grid-cols-2 lg:gap-20 lg:max-w-screen-lg mx-auto p-6">
-      <p class="mb-6 order-1 lg:order-none lg:mt-28">{{ unProjet.date }}</p>
-      <div class="order-2 lg:order-none">
-<!--         <img :src="imgPb[1]" alt="Image secondaire" />
- -->        <p class="text-center mt-1 lg:text-base text-sm">
-          <i>{{ unProjet.intertitre }}</i>
-        </p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="mb-4">{{ unProjet.titre }}</h1>
+
+    <!-- Hero Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <!-- Colonne gauche : Image -->
+      <div class="order-2 lg:order-1">
+        <ImgPb 
+          :record="unProjet" 
+          :filename="unProjet.img1" 
+          class="w-full h-[300px] md:h-[400px] object-cover rounded-lg shadow-lg" 
+          alt="Image du projet" 
+        />
       </div>
-      <p class="mt-4 mb-6 order-3 lg:order-none lg:mt-20">{{ unProjet.value?.paragraphe2 }}</p>
-      <div class="order-4 lg:order-none">
-<!--         <img :src="imgPb[2]" alt="Autre image du projet" />
- -->        <p class="text-center mt-1 lg:text-base text-sm">
-          <i>{{ unProjet.description }}</i>
-        </p>
+      
+      <!-- Colonne droite : Informations -->
+      <div class="order-1 lg:order-2 space-y-6">
+        <p class="text-lg">{{ unProjet.date }}</p>
+        <p class="text-gray-700">{{ unProjet.resume }}</p>
       </div>
-    </div>
-    <p class="lg:mx-36 mx-6">{{ unProjet.outils }}</p>
-    <p class="lg:mx-36 mx-6">{{ unProjet.intertitre2 }}</p>
-    <p class="lg:mx-36 mx-6">{{ unProjet.soustitre1 }}</p>
-        <ImgPb :record="unProjet" :filename="unProjet.img2" class="w-full h-auto object-cover" alt="Image du projet" />
-        <p class="lg:mx-36 mx-6">{{ unProjet.soustitre2 }}</p>
-        <ImgPb :record="unProjet" :filename="unProjet.img3" class="w-full h-auto object-cover" alt="Image du projet" />
-        <p class="lg:mx-36 mx-6">{{ unProjet.intertitre3 }}</p>
-        <ImgPb :record="unProjet" :filename="unProjet.img4" class="w-full h-auto object-cover" alt="Image du projet" />
-        <p class="lg:mx-36 mx-6">{{ unProjet.description2 }}</p>
-        <p class="lg:mx-36 mx-6">{{ unProjet.description3 }}</p>
-        <p class="lg:mx-36 mx-6">{{ unProjet.description4 }}</p>
-        <p class="lg:mx-36 mx-6">{{ unProjet.description5 }}</p>
-                <ImgPb :record="unProjet" :filename="unProjet.img5" class="w-full h-auto object-cover" alt="Image du projet" />
-                <ImgPb :record="unProjet" :filename="unProjet.img6" class="w-full h-auto object-cover" alt="Image du projet" />
-        <p class="lg:mx-36 mx-6">{{ unProjet.description6 }}</p>
-                        <ImgPb :record="unProjet" :filename="unProjet.img7" class="w-full h-auto object-cover" alt="Image du projet" />
-        <p class="lg:mx-36 mx-6">{{ unProjet.description7 }}</p>
-        <p class="lg:mx-36 mx-6">{{ unProjet.mockup }}</p>
+    </section>
+
+    <!-- Section descriptive -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- Colonne gauche -->
+      
+      <div class="space-y-6">
+        <h2 class="text-xl font-semibold">{{ unProjet.sous_titre1 }}</h2>
+        <p class="text-gray-700">{{ unProjet.description1 }}</p>
+      </div>
+      <!-- Colonne droite -->
+      
+       <div class="space-y-6">
+        <h3 class="text-xl font-semibold">{{ unProjet.sous_titre4 }}</h3>
+        <p class="text-gray-700">{{ unProjet.outils }}</p>
+         <h3 class="text-xl font-semibold mb-4 text-mauve">{{ unProjet.sous_titre3 }}</h3>
+        <p class="text-gray-700 mb-8">{{ unProjet.description3 }}</p>
+      </div>
+    </section>
+
+    <!-- Section Charte Graphique -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- Colonne gauche -->
+      <div class="bg-backgroundGris rounded-lg p-8">
+        <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre2 }}</h2>
+        <p class="text-gray-700 mb-8">{{ unProjet.intertitre2 }}</p>
+        <ImgPb 
+          :record="unProjet" 
+          :filename="unProjet.couleurs" 
+          class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" 
+          alt="Couleurs du projet" 
+        />
+      </div>
+      
+      <!-- Colonne droite -->
+      <div class="bg-backgroundGris rounded-lg p-8">
+       
+        <ImgPb 
+          :record="unProjet" 
+          :filename="unProjet.typo" 
+          class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" 
+          alt="Typographie du projet" 
+        />
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div>
+        <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre5 }}</h2>
+        <p class="text-gray-700 mb-8">{{ unProjet.galerie }}</p>
+        <ImgPb 
+          :record="unProjet" 
+          :filename="unProjet.img5" 
+          class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" 
+          alt="Image du projet" 
+        />
+      </div>
+      <div class="space-y-8">
+        <ImgPb 
+          :record="unProjet" 
+          :filename="unProjet.img6" 
+          class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" 
+          alt="Image du projet" 
+        />
+      </div>
+
+    </section>
+                  <p class="text-gray-700 leading-relaxed">{{ unProjet.conclusion }}</p>
 
 
-
-    <div class="flex justify-center mb-6">
-      <Button class="mb-4 lg:mb-6 mt-10" url="/projet" text="Retour aux projets" />
+    <!-- Bouton retour -->
+    <div class="flex justify-center pb-16">
+      <Btn url="/projet" text="Retour aux projets" />
     </div>
   </div>
 </template>
