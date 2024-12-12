@@ -18,7 +18,7 @@ const variantClass = {
 
 <template>
   <RouterLink
-		class="inline-flex items-center gap-4 px-4 py-4 text-xs font-bold uppercase lg:text-sm"
+		class=" bg-mauve  text-black  px-2 rounded-xl gap-4 py-2 text-xs font-bold uppercase lg:text-sm"
 		:class="variantClass[props.variant]"
 		:to="`${url}`">
     <ArrowIcon :class="props.variant === 'default' ? 'stroke-black' : 'stroke-white'" />
