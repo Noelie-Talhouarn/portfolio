@@ -39,7 +39,7 @@ useHead({
         <article class="">
           <img
             src="/src/img/moi.webp"
-            alt="Photo de profil"
+            alt="Photo de profil de Noélie Talhouarn"
             class="flex-justify-center h-42 w-42 mb-9 flex rounded-full lg:mx-auto lg:mt-9 lg:h-80 lg:w-80"
           />
         </article>

@@ -102,9 +102,9 @@ const deleteProject = async (cardId: string, projectId: string) => {
     <section class="">
 <div class="relative mx-auto pl-14">
     <!-- Grille principale -->
-    <div class="grid-titre gradient-bg-titre"></div>
+    <div class=""></div>
     <!-- Ligne avec des cases -->
-    <div class="grid-line"></div>
+    <div class=""></div>
     <!-- Texte superposé -->
     <h1 class=" relative ">Mes Projets</h1>
     

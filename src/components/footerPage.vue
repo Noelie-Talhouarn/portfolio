@@ -35,11 +35,7 @@ import IconInstagram from './icons/IconInstagram.vue'
         <p class="text-center text-xs lg:text-base mt-4">©2024 Noélie Talhouarn.</p>
  
     </div>
-       <RouterLink
-            class="block py-2 rounded-lg lg:hover:underline"
-            to="/login"
-           
-            >Connexion admin</RouterLink>
+       
     </div>
   </footer>
 </template>
