@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import GithubIcon from './icons/githubIcon.vue';
-import LinkedinIcon from './icons/linkedinIcon.vue';
-import InstagramIcon from './icons/instagramIcon.vue';
-import Login from './login.vue';
+import { computed, ref, watch } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+import GithubIcon from './icons/githubIcon.vue'
+import LinkedinIcon from './icons/linkedinIcon.vue'
+import InstagramIcon from './icons/instagramIcon.vue'
+import { pb } from '@/backend'
 
 
+const router = useRouter()
 const activeMenu = ref(false)
+const isLoggedIn = ref(pb.authStore.isValid)
+const adminName = ref(pb.authStore.model?.email)
+
+// Surveiller les changements d'authentification
+pb.authStore.onChange(() => {
+  isLoggedIn.value = pb.authStore.isValid
+  adminName.value = pb.authStore.model?.email
+})
 
 function closeMenu() {
   activeMenu.value = false
@@ -18,6 +27,9 @@ function closeMenu() {
     class="fixed top-0 left-0 right-0 flex items-center justify-between px-4 gap-8 h-20 z-50"
     :class="{ 'bg-backgroundGris': activeMenu }"
   >
+  <div v-if="isLoggedIn" class="text-mauve">
+      Bonjour {{ adminName }}
+    </div>
     <RouterLink to="/" aria-label="Accueil" @click="closeMenu">
       <IconLogo aria-hidden="true"  class="h-12 w-12" />
     </RouterLink>
