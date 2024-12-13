@@ -7,9 +7,9 @@
 
 @layer base {
   @font-face {
-    font-family: Ahsing;
-    src: url('fonts/Ahsing-Regular.woff') format('woff'),
-         url('fonts/Ahsing-Regular.woff2') format('woff2');
+    font-family: 'Ahsing';
+    src: url('/fonts/Ahsing-Regular.woff') format('woff'),
+         url('/fonts/Ahsing-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
