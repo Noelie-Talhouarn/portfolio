@@ -8,6 +8,8 @@ import ImgPb from '@/components/ImgPb.vue';
 import gsap from 'gsap';
 import { useMouse } from '@vueuse/core';
 import CardAccueil from '@/components/cardAccueil.vue';
+import { useHead } from '@unhead/vue'
+
 
 // Charger la liste complète des projets depuis PocketBase
 const listProjet = await pb.collection('cards').getFullList<CardsResponse>({
@@ -57,6 +59,18 @@ onMounted(() => {
     })
   })
 })
+
+
+useHead({
+  title: ' Accueil  | Portfolio de Noélie Talhouarn',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Étudiante en développement web, découvrez mes projets, compétences et aspirations professionnelles. Contactez-moi pour vos projets web.'
+    }
+  ]
+})
 </script>
 
 <template>
@@ -100,8 +114,14 @@ onMounted(() => {
 
 <section class=" ">
     <section class=" ">
-  <article class="flex flex-col justify-center max-w-2xl mx-auto pt-16 mb-6 px-8">
+  <article class="flex flex-col-2 gap-20  justify-center max-w-2xl mx-auto pt-16 mb-6 px-8">
     <h4>Derniers projets</h4>
+      <RouterLink
+            class="block py-2 rounded-lg lg:underline"
+            to="/projet"
+           
+            >Voir tous les projets</RouterLink
+          >
   </article>
   <article class="">
     <CardAccueil />

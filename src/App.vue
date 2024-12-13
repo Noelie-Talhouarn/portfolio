@@ -7,14 +7,12 @@ import FooterPage from './components/footerPage.vue';
 
 <template>
 <HeaderPage />
- <div>
-  <main>
+  <main class="pt-20">
     <RouterView v-slot="{ Component }">
     <Suspense>
       <component :is="Component" :key="$route.path" />
     </Suspense>
   </RouterView>
 </main>
-</div>
 <FooterPage />
 </template>

@@ -80,11 +80,25 @@
       </div>
     </form>
   </div>
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import Btn from '@/components/btn.vue'; // Assurez-vous que le chemin est correct
+import { useHead } from '@unhead/vue';
+
+
+useHead({
+  title: ' Contact  | Portfolio de Noélie Talhouarn',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Recrutez une développeuse web passionnée et compétente ! Contactez Noélie Talhouarn pour un stage ou une collaboration en développement front-end et back-end.'
+    }
+  ]
+})
 
 const WEB3FORMS_ACCESS_KEY = "7ddb9634-765c-4c24-bcd6-3df399b17e7f";
 const name = ref("");
@@ -133,4 +147,6 @@ const submitForm = async (event?: Event) => {
     alert("Une erreur réseau s'est produite. Veuillez réessayer.");
   }
 };
+
+
 </script>

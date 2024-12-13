@@ -4,6 +4,21 @@ import { pb } from '@/backend';
 import type { CardsResponse, ProjetsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
 import Btn from '@/components/btn.vue';
+import { useRouter } from 'vue-router';
+
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: ' Mes projets  | Portfolio de Noélie Talhouarn',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Découvrez mes projets web où créativité et technologies modernes se rencontrent.'
+    }
+  ]
+})
+const router = useRouter()
 
 // Charger la liste complète des cartes et des projets depuis PocketBase
 const listCard = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' });
@@ -33,19 +48,43 @@ const setFilter = (newFilter: string) => {
 
 const fetchCards = async () => {
   try {
-    const records = await pb.collection('cards').getFullList({
-      expand: 'projet', // Assurez-vous d'étendre la relation projet
-    });
+    const newCards = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' })
+    const newProjets = await pb.collection('projets').getFullList<ProjetsResponse>()
     
+    // Mise à jour de la liste
+    listCardWithProjet.value = newCards.map((card) => {
+      const projet = newProjets.find((p) => p.id === card.projet)
+      return { ...card, projet: projet ? projet : null, projetId: projet?.id, expand: { projet } }
+    })
   } catch (error) {
-    console.error(error);
+    console.error('Erreur lors du chargement:', error)
   }
-
-fetchCards();
-
 }
 
 const isAdmin = computed(() => pb.authStore.isValid)
+
+const deleteProject = async (cardId: string, projectId: string) => {
+  if (!confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
+    return
+  }
+
+  try {
+    // Supprimer la card
+    await pb.collection('cards').delete(cardId)
+    
+    // Supprimer le projet associé
+    if (projectId) {
+      await pb.collection('projets').delete(projectId)
+    }
+    
+    // Recharger la liste
+    await fetchCards()
+  } catch (error) {
+    console.error('Erreur lors de la suppression:', error)
+  }
+}
+
+
 
 </script>
 <template>
@@ -53,10 +92,11 @@ const isAdmin = computed(() => pb.authStore.isValid)
   <Btn 
       v-if="isAdmin"
       class="bg-mauve text-white" 
-      url="/projet/create" 
+      url="/projet/edit" 
       text="Créer un projet" 
     />
   </div>
+    
   <section class="px-6">
     
     <section class="">
@@ -66,7 +106,7 @@ const isAdmin = computed(() => pb.authStore.isValid)
     <!-- Ligne avec des cases -->
     <div class="grid-line"></div>
     <!-- Texte superposé -->
-    <h1 class=" relative -top-28">Mes Projets</h1>
+    <h1 class=" relative ">Mes Projets</h1>
     
   </div>
   
@@ -118,12 +158,12 @@ const isAdmin = computed(() => pb.authStore.isValid)
               <span v-if="card.domaines2" class="border border-black px-4 py-2 text-black  rounded-full text-xs">{{ card.domaines2 }}</span>
               <span v-if="card.domaines3" class="border border-black px-4 py-2 text-black rounded-full text-xs">{{ card.domaines3 }}</span>
             </div>
-            <span class="block lg:inline-block mt-2 lg:mt-0 lg:ml-10 text-sm text-black font-light">{{ card.date_projet }}</span>
+            <span class="block text-sm text-gray-500 mt-2">{{ card.date }}</span>
           </div>
           </div>
 
           <!-- Titre et description -->
-          <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
+          <h4 class="text-lg font-semibold mb-1">{{ card.titre }}</h4>
           <p class="text-gray-700 text-sm mb-1">{{ card.description_projet }}</p>
 </div>
           <!-- Bouton découvrir -->
@@ -133,9 +173,17 @@ const isAdmin = computed(() => pb.authStore.isValid)
       :url="`/projet/${card.expand?.projet?.id}`" 
       text="Voir plus" 
     /></div>
+   <button 
+      v-if="pb.authStore.isValid"
+      @click="deleteProject(card.id, card.expand?.projet?.id ?? '')"
+      class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+    >
+      Supprimer
+    </button>
+  </div>
 
           </div>
-        </div>
+       
     </section>
   </section>
 </template>

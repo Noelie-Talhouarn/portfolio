@@ -30,5 +30,5 @@ const src = pb.files.getUrl(props.record, props.filename, {
 })
 </script>
 <template>
-  <img class="max-w-80" :src="src" :width="width" :height="height" />
+  <img class="" :src="src" :width="width" :height="height" />
 </template>

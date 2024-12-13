@@ -108,8 +108,5 @@ function closeMenu() {
       </div>
     </nav>
   </header>
-  <main class="pt-20">
-    
-  </main>
 </template>
 

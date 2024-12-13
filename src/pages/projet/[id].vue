@@ -2,6 +2,7 @@
 import { pb } from '@/backend'
 import Btn from '@/components/btn.vue';
 import ImgPb from '@/components/ImgPb.vue';
+import { useHead } from '@unhead/vue';
 import { ref } from 'vue'
 /* import Button from '@/components/Button.vue'
  */import { useRoute } from 'vue-router'
@@ -18,16 +19,16 @@ if (unProjet.value.img) {
   imgPb.value = unProjet.value.img.map((image: any) => pb.getFileUrl(unProjet.value, image))
 }
 
-/* import { useHead } from '@unhead/vue'
+
 useHead({
-  title: `Projet | ${unProjet.value?.nom_projet || 'Détails'}`,
+  title: `Projet | ${unProjet.value?.titre|| 'Détails'}`,
   meta: [
     {
       name: 'description',
-      content: 'Découvrez les détails du projet de l\'architecte.'
+      content: 'Découvrez chacun de mes projets en détail.'
     }
   ]
-}) */
+}) 
 </script>
 
 <template>

@@ -38,14 +38,14 @@ export type AuthSystemFields<T = never> = {
 
 export type CardsRecord = {
 	categorie?: string
-	date_projet?: number
+	date?: number
 	description_projet?: string
 	domaines1?: string
 	domaines2?: string
 	domaines3?: string
 	img?: string
-	nom_projet?: string
 	projet?: RecordIdString
+	titre?: string
 }
 
 export type ContactRecord = {
@@ -57,30 +57,22 @@ export type ContactRecord = {
 }
 
 export type ProjetsRecord = {
-	date?: string
-	description2?: string
+	conclusion?: string
+	couleurs?: string
+	date?: number
+	description1?: string
 	description3?: string
-	description4?: string
-	description5?: string
-	description6?: string
-	description7?: string
-	description?: string
-	img1?: string
-	img2?: string
-	img3?: string
-	img4?: string
-	img5?: string
-	img6?: string
-	img7?: string
-	intertitre1?: string
-	intertitre2?: string
-	intertitre3?: string
-	intertitre?: string
-	mockups?: string[]
+	galerie?: string[]
+	img?: string
 	outils?: string[]
-	soustitre1?: string
-	soustitre2?: string
+	resume?: string
+	sous_titre1?: string
+	sous_titre2?: string
+	sous_titre3?: string
+	sous_titre4?: string
+	sous_titre5?: string
 	titre?: string
+	typo?: string
 }
 
 export type UsersRecord = {

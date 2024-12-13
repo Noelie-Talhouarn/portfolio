@@ -49,11 +49,11 @@ defineProps<{
               <span v-if="card.domaines2" class="border border-black px-4 py-2 text-black  rounded-full text-xs">{{ card.domaines2 }}</span>
               <span v-if="card.domaines3" class="border border-black px-4 py-2 text-black rounded-full text-xs">{{ card.domaines3 }}</span>
             </div>
-            <span class="text-sm text-black font-light">{{ card.date_projet }}</span>
+            <span class="text-sm text-black font-light">{{ card.date }}</span>
           </div>
 
           <!-- Titre et description -->
-          <h4 class="text-lg font-semibold mb-1">{{ card.nom_projet }}</h4>
+          <h4 class="text-lg font-semibold mb-1">{{ card.titre }}</h4>
           <p class="text-gray-700 text-sm mb-1">{{ card.description_projet }}</p>
 
           <!-- Bouton découvrir -->

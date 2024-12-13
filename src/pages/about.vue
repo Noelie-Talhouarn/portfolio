@@ -11,7 +11,19 @@ import IconTailwind from '@/components/icons/IconTailwind.vue'
 import IconTrello from '@/components/icons/IconTrello.vue'
 import IconVuejs from '@/components/icons/IconVuejs.vue'
 import IconWordpress from '@/components/icons/IconWordpress.vue'
+import { useHead } from '@unhead/vue'
 import { RouterLink, RouterView } from 'vue-router/auto'
+
+useHead({
+  title: ' A Propos  | Portfolio de Noélie Talhouarn',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Je suis Noélie Talhouarn, une développeuse web. Découvrez mes compétences !'
+    }
+  ]
+})
 
 </script>
 
