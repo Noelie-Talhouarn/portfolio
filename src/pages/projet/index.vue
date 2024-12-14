@@ -106,7 +106,7 @@ const deleteProject = async (cardId: string, projectId: string) => {
     <!-- Ligne avec des cases -->
     <div class=""></div>
     <!-- Texte superposé -->
-    <h1 class=" relative ">Mes Projets</h1>
+    <h1 class="relative mb-6">Mes <span class="text-mauve">Projets</span> </h1>
     
   </div>
   

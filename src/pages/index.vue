@@ -125,7 +125,7 @@ useHead({
   <article class="flex flex-col-2 gap-20  justify-center max-w-2xl mx-auto pt-16 mb-6 px-8">
     <h4>Derniers projets</h4>
       <RouterLink
-            class="block py-2 rounded-lg lg:underline"
+            class="block py-2 rounded-lg underline"
             to="/projet"
            
             >Voir tous les projets</RouterLink
