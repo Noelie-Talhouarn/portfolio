@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto px-4 py-8 ">
     <div class=" mb-6">
       <h1 class=" text-black text-center">
         Me <span class="text-mauve">contacter</span>
@@ -9,7 +9,7 @@
         via le formulaire ci-dessous. Je serai ravie de vous répondre dans les plus brefs délais !
       </p>
     </div>
-    <form class="bg-white shadow-md rounded-lg p-6 space-y-4">
+    <form class=" shadow-md rounded-lg p-6 space-y-4">
       <div>
         <label for="name" class="block text-gray-700 font-bold mb-2">Nom</label>
         <input
@@ -18,7 +18,7 @@
           name="name"
           v-model="name"
           placeholder="ex : Durant"
-          class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+          class="w-full px-4 py-2 border border-mauve rounded-lg focus:outline-none focus:ring-2 focus:ring-mauve"
         />
       </div>
 
@@ -29,8 +29,8 @@
           id="prenom"
           name="prenom"
           v-model="prenom"
-          placeholder="ex : Enzo"
-          class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+          placeholder="ex : Clara"
+          class="w-full px-4 py-2 border border-mauve rounded-lg focus:outline-none focus:ring-2 focus:ring-mauve"
         />
       </div>
 
@@ -41,8 +41,8 @@
           id="email"
           name="email"
           v-model="email"
-          placeholder="ex : enzo.durant@gmail.com"
-          class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+          placeholder="ex : clara.durant@gmail.com"
+          class="w-full px-4 py-2 border border-mauve rounded-lg focus:outline-none focus:ring-2 focus:ring-mauve"
         />
       </div>
 
@@ -54,7 +54,7 @@
           name="objet"
           v-model="objet"
           placeholder="ex : renseignements"
-          class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+          class="w-full px-4 py-2 border border-mauve rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
       </div>
 
@@ -65,7 +65,7 @@
           name="message"
           v-model="message"
           placeholder="ex : Bonjour, votre profil..."
-          class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+          class="w-full px-4 py-2 border border-mauve rounded-lg focus:outline-none focus:ring-2 focus:ring-mauve"
           rows="5"
         ></textarea>
       </div>

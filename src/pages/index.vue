@@ -9,7 +9,11 @@ import gsap from 'gsap';
 import { useMouse } from '@vueuse/core';
 import CardAccueil from '@/components/cardAccueil.vue';
 import { useHead } from '@unhead/vue'
+import IconArrow from '@/components/icons/IconArrow.vue';
 
+const scrollToHeight = () => {
+  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+};
 
 // Charger la liste complète des projets depuis PocketBase
 const listProjet = await pb.collection('cards').getFullList<CardsResponse>({
@@ -21,8 +25,6 @@ const lastProject = computed(() => listProjet.slice(-1));
 
 // Afficher 2 projets au maximum
 const visibleProjects = computed(() => listProjet.slice(-2));
-
-const showLogin = ref(false) // Par défaut, le formulaire est caché
 
 const { x, y } = useMouse()
 
@@ -62,7 +64,7 @@ onMounted(() => {
 
 
 useHead({
-  title: ' Accueil  | Portfolio de Noélie Talhouarn',
+  title: ' Accueil | Portfolio Noélie Talhouarn',
   meta: [
     {
       name: 'description',
@@ -74,7 +76,7 @@ useHead({
 </script>
 
 <template>
- <section class="gradient-bg-hero h-[520px] w-full relative z-30 hero">
+ <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero">
   
   <!-- Zone texte -->
 <div class="absolute inset-0 flex items-center justify-center z-40 lg:-mt-20 md:-mt-[70px]">
@@ -86,6 +88,12 @@ useHead({
     <h2 class="lg:mt-7 md:mt-11 mt-8 ">Développeuse web</h2>
     
   </div>
+  
+</div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+  <button @click="scrollToHeight">
+    <IconArrow class="cursor-pointer transition-transform h-12 w-12" />
+  </button>
 </div>
 
 
