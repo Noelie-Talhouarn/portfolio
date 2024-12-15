@@ -26,7 +26,7 @@ import FooterPage from './components/footerPage.vue'
       
       <!-- Fallback Loader -->
       <template #fallback>
-        
+        <p>Chargement...</p>
       </template>
     </Suspense>
     
