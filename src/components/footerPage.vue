@@ -32,9 +32,12 @@ import IconInstagram from './icons/IconInstagram.vue'
         </ul>
       </nav>
       <div>
+        <div class="flex justify-center gap-4">
+          <a class="text-center text-xs lg:text-base mt-4" href="mailto:noelie.talhouarn@gmail.com">noelie.talhouarn@gmail.com</a>
         <p class="text-center text-xs lg:text-base mt-4">©2024 Noélie Talhouarn.</p>
  
     </div>
+     </div>
        
     </div>
   </footer>

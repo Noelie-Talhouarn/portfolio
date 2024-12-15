@@ -106,7 +106,7 @@ const deleteProject = async (cardId: string, projectId: string) => {
     <!-- Ligne avec des cases -->
     <div class=""></div>
     <!-- Texte superposé -->
-    <h1 class="relative mb-6">Mes <span class="text-mauve">Projets</span> </h1>
+    <h1 class="relative mb-12 text-center">Mes <span class="text-mauve">Projets</span> </h1>
     
   </div>
   
@@ -158,7 +158,6 @@ const deleteProject = async (cardId: string, projectId: string) => {
               <span v-if="card.domaines2" class="border border-black px-4 py-2 text-black  rounded-full text-xs">{{ card.domaines2 }}</span>
               <span v-if="card.domaines3" class="border border-black px-4 py-2 text-black rounded-full text-xs">{{ card.domaines3 }}</span>
             </div>
-            <span class="block text-sm text-gray-500 mt-2">{{ card.date }}</span>
           </div>
           </div>
 

@@ -14,9 +14,10 @@ const unProjet = ref()
 unProjet.value = await pb.collection('projets').getOne(route.params.id)
 
 // Charger les images du projet
-const imgPb = ref()
-if (unProjet.value.img) {
-  imgPb.value = unProjet.value.img.map((image: any) => pb.getFileUrl(unProjet.value, image))
+const imgPb = ref([])
+if (unProjet.value?.img) {
+  imgPb.value = (Array.isArray(unProjet.value.img) ? unProjet.value.img : [unProjet.value.img])
+    .map((image: any) => pb.getFileUrl(unProjet.value, image))
 }
 
 
@@ -41,7 +42,7 @@ useHead({
       <div class="order-2 lg:order-1">
         <ImgPb 
           :record="unProjet" 
-          :filename="unProjet.img1" 
+          :filename="unProjet.img" 
           class="w-full h-[300px] md:h-[400px] object-cover rounded-lg shadow-lg" 
           alt="Image du projet" 
         />
@@ -50,77 +51,82 @@ useHead({
       <!-- Colonne droite : Informations -->
       <div class="order-1 lg:order-2 space-y-6">
         <p class="text-lg">{{ unProjet.date }}</p>
-        <p class="text-gray-700">{{ unProjet.resume }}</p>
+        <p class="">{{ unProjet.resume }}</p>
       </div>
     </section>
 
     <!-- Section descriptive -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-      <!-- Colonne gauche -->
-      
-      <div class="space-y-6">
-        <h2 class="text-xl font-semibold">{{ unProjet.sous_titre1 }}</h2>
-        <p class="text-gray-700">{{ unProjet.description1 }}</p>
-      </div>
-      <!-- Colonne droite -->
-      
-       <div class="space-y-6">
-        <h3 class="text-xl font-semibold">{{ unProjet.sous_titre4 }}</h3>
-        <p class="text-gray-700">{{ unProjet.outils }}</p>
-         <h3 class="text-xl font-semibold mb-4 text-mauve">{{ unProjet.sous_titre3 }}</h3>
-        <p class="text-gray-700 mb-8">{{ unProjet.description3 }}</p>
-      </div>
-    </section>
+  <!-- Colonne gauche -->
+  <div class="space-y-6">
+    <div>
+      <h3 class="text-xl font-semibold">{{ unProjet.sous_titre4 }}</h3>
+      <div v-if="unProjet.outils" class="grid grid-cols-3 gap-4">
+         <div v-for="image in unProjet.outils" :key="image">
+           <ImgPb 
+        :record="unProjet" 
+        :filename="image" 
+        class="mb-4" 
+        alt="Couleurs du projet" 
+           />
+         </div>
+       </div>
+    </div>
+    <div>
+      <h3 class="text-xl font-semibold">{{ unProjet.sous_titre3 }}</h3>
+      <p class="">{{ unProjet.description3 }}</p>
+    </div>
+    
+  </div>
+  
+  <!-- Colonne droite -->
+  <div class="space-y-6">
+    <h2 class="text-xl font-semibold">{{ unProjet.sous_titre1 }}</h2>
+    <p class="">{{ unProjet.description1 }}</p>
+  </div>
+</section>
 
     <!-- Section Charte Graphique -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
       <!-- Colonne gauche -->
       <div class="bg-backgroundGris rounded-lg p-8">
         <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre2 }}</h2>
-        <p class="text-gray-700 mb-8">{{ unProjet.intertitre2 }}</p>
-        <ImgPb 
-          :record="unProjet" 
-          :filename="unProjet.couleurs" 
-          class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" 
-          alt="Couleurs du projet" 
-        />
+        <p class=" mb-8">{{ unProjet.intertitre2 }}</p>
+        <div v-if="unProjet.charte_graphique" class="grid grid-cols-2 gap-4">
+          <div v-for="image in unProjet.charte_graphique" :key="image">
+            <ImgPb 
+              :record="unProjet" 
+              :filename="image" 
+              class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" 
+              alt="Couleurs du projet" 
+            />
+          </div>
+        </div>
       </div>
       
       <!-- Colonne droite -->
-      <div class="bg-backgroundGris rounded-lg p-8">
+      
+        <p class="">{{ unProjet.conclusion }}</p>
        
-        <ImgPb 
-          :record="unProjet" 
-          :filename="unProjet.typo" 
-          class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" 
-          alt="Typographie du projet" 
-        />
-      </div>
     </section>
 
     <!-- Galerie -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-      <div>
-        <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre5 }}</h2>
-        <p class="text-gray-700 mb-8">{{ unProjet.galerie }}</p>
-        <ImgPb 
-          :record="unProjet" 
-          :filename="unProjet.img5" 
-          class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" 
-          alt="Image du projet" 
-        />
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre5 }}</h2>
+      <div v-if="unProjet.galerie" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div v-for="image in unProjet.galerie" 
+         :key="image"
+         class="flex justify-center items-center">
+          <ImgPb 
+        :record="unProjet" 
+        :filename="image" 
+        class="transition-transform duration-300 w-[600] h-[600]" 
+        alt="Image du projet" 
+          />
+        </div>
       </div>
-      <div class="space-y-8">
-        <ImgPb 
-          :record="unProjet" 
-          :filename="unProjet.img6" 
-          class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300" 
-          alt="Image du projet" 
-        />
-      </div>
-
     </section>
-                  <p class="text-gray-700 leading-relaxed">{{ unProjet.conclusion }}</p>
+                 
 
 
     <!-- Bouton retour -->
