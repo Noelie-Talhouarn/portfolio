@@ -1,48 +1,61 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router/auto'
-import LogInOut from './components/LogInOut.vue';
-import HeaderPage from './components/headerPage.vue';
-import FooterPage from './components/footerPage.vue';
-
 import { ref, provide } from 'vue'
 import { useRouter } from 'vue-router'
+import HeaderPage from './components/headerPage.vue'
+import FooterPage from './components/footerPage.vue'
 import Loader from '@/components/loader.vue'
 
-// Variable pour suivre l'état de chargement
+// Variable globale pour suivre l'état de chargement
 const isLoading = ref(false)
-
 provide('isLoading', isLoading)
 
-
-// Gestion des changements de route
 const router = useRouter()
 
+// Gestion des transitions de route
 router.beforeEach((to, from, next) => {
-  isLoading.value = true // Démarre le loader
+  isLoading.value = true // Active le loader global
   next()
 })
 
 router.afterEach(() => {
-  isLoading.value = false // Arrête le loader
+  isLoading.value = false // Désactive le loader global
 })
 </script>
 
 <template>
-<HeaderPage />
-  <main class="pt-20">
-     <div v-if="isLoading" class="loader-container">
-      <div class="loader"></div>
-    </div>
-    <RouterView v-slot="{ Component }">
+  <!-- Header -->
+  <HeaderPage />
+
+  <!-- Loader Global -->
+  <div v-if="isLoading" class="loader-container">
+    <Loader />
+  </div>
+
+  <!-- Contenu Principal -->
+  <main class="pt-20 relative">
     <Suspense>
-      <component :is="Component" :key="$route.path" />
+      <!-- Composant dynamique avec fallback -->
+      <template #default>
+        <RouterView v-slot="{ Component }">
+          <component :is="Component" :key="$route.path" />
+        </RouterView>
+      </template>
+      
+      <!-- Fallback Loader -->
+      <template #fallback>
+        <div class="loader-container">
+          <Loader />
+        </div>
+      </template>
     </Suspense>
-  </RouterView>
-</main>
-<FooterPage />
+  </main>
+
+  <!-- Footer -->
+  <FooterPage />
 </template>
 
 <style>
+/* Loader Global */
 .loader-container {
   position: fixed;
   top: 0;
