@@ -11,6 +11,8 @@ import CardAccueil from '@/components/cardAccueil.vue';
 import { useHead } from '@unhead/vue'
 import IconArrow from '@/components/icons/IconArrow.vue';
 
+
+
 const scrollToHeight = () => {
   window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 };

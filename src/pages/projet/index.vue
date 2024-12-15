@@ -105,6 +105,9 @@ const deleteProject = async (cardId: string, projectId: string) => {
 
 </script>
 <template>
+  <div v-if="isLoading" class="loader-container">
+      <div class="loader"></div>
+    </div>
   <div>
   <Btn 
       v-if="isAdmin"
@@ -203,3 +206,33 @@ const deleteProject = async (cardId: string, projectId: string) => {
     </section>
   </section>
 </template>
+
+<style scoped>
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top-color: #6b46c1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
