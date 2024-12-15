@@ -27,12 +27,14 @@ router.afterEach(() => {
   <HeaderPage />
 
   <!-- Loader Global -->
-  <div v-if="isLoading" class="loader-container">
-    <Loader />
-  </div>
+  
 
   <!-- Contenu Principal -->
   <main class="pt-20 relative">
+     <div v-if="isLoading" class="loader-container">
+      <div class="loader"></div>
+    </div>
+    <div v-else>
     <Suspense>
       <!-- Composant dynamique avec fallback -->
       <template #default>
@@ -48,6 +50,7 @@ router.afterEach(() => {
         </div>
       </template>
     </Suspense>
+    </div>
   </main>
 
   <!-- Footer -->
