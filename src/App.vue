@@ -34,7 +34,7 @@ router.afterEach(() => {
      <div v-if="isLoading" class="loader-container">
       <div class="loader"></div>
     </div>
-    <div v-else>
+    
     <Suspense>
       <!-- Composant dynamique avec fallback -->
       <template #default>
@@ -50,7 +50,7 @@ router.afterEach(() => {
         </div>
       </template>
     </Suspense>
-    </div>
+    
   </main>
 
   <!-- Footer -->
