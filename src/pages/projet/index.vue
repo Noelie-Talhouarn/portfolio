@@ -82,7 +82,8 @@ const fetchCards = async () => {
     <h1 class="relative mb-12 text-center">Mes <span class="text-mauve">Projets</span> </h1>
     
   </div>
-  
+  <Suspense>
+    <template #default>
       <!-- Filtrage avec un menu déroulant sur mobile, et boutons sur écran plus large -->
       <section class="mb-6 py-2 lg:flex lg:justify-center lg:space-x-4">
         <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded text-sm bg-backgroundGris hover border border-mauve">
@@ -137,7 +138,9 @@ const fetchCards = async () => {
           <!-- Titre et description -->
           <h4 class="text-lg font-semibold mb-1">{{ card.titre }}</h4>
           <p class="text-gray-700 text-sm mb-1">{{ card.description_projet }}</p>
-</div>
+
+        </div>
+
           <!-- Bouton découvrir -->
           <div class="mb-4 ml-4">
 <Btn 
@@ -149,8 +152,14 @@ const fetchCards = async () => {
   </div>
 
           </div>
-       
+       </template>
+       <template #fallback>
+      <p>Chargement...</p>
+    </template>
+  </Suspense>
     </section>
+    
   </section>
+  
 </template>
 
