@@ -52,6 +52,15 @@ useHead({
       <div class="order-1 lg:order-2 space-y-6">
         <p class="text-lg">{{ unProjet.date }}</p>
         <p class="">{{ unProjet.resume }}</p>
+        
+ <div v-if="unProjet.url">
+      <Btn 
+        :url="unProjet.url"
+        text="Voir le projet"
+        target="_blank"
+        class="bg-mauve text-white py-2 px-4 rounded-md hover:opacity-90"
+      />
+    </div>
       </div>
     </section>
 
@@ -61,12 +70,12 @@ useHead({
   <div class="space-y-6">
     <div>
       <h3 class="text-xl font-semibold">{{ unProjet.sous_titre4 }}</h3>
-      <div v-if="unProjet.outils" class="grid grid-cols-3 gap-4">
+      <div v-if="unProjet.outils" class="grid grid-cols-3 gap-2">
          <div v-for="image in unProjet.outils" :key="image">
            <ImgPb 
         :record="unProjet" 
         :filename="image" 
-        class="mb-4" 
+        class="mb-4 w-20 h-20" 
         alt="Couleurs du projet" 
            />
          </div>
