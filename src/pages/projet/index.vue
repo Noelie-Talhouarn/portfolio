@@ -1,12 +1,28 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, inject, type Ref } from 'vue';
 import { pb } from '@/backend';
 import type { CardsResponse, ProjetsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
 import Btn from '@/components/btn.vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 import { useHead } from '@unhead/vue'
+
+const isLoading = inject('isLoading') as Ref<boolean>
+const projet = ref<ProjetsResponse | null>(null)
+
+  onMounted(async () => {
+  try {
+    isLoading.value = true // Démarrer le loader
+
+    const id = route.params.id
+    projet.value = await pb.collection('projets').getOne(id)
+  } catch (error) {
+    console.error('Erreur lors du chargement des données :', error)
+  } finally {
+    isLoading.value = false // Arrêter le loader
+  }
+})
 
 useHead({
   title: ' Mes projets  | Portfolio de Noélie Talhouarn',
@@ -19,6 +35,7 @@ useHead({
   ]
 })
 const router = useRouter()
+const route = useRoute()
 
 // Charger la liste complète des cartes et des projets depuis PocketBase
 const listCard = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' });
