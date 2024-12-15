@@ -3,23 +3,7 @@ import { ref, provide } from 'vue'
 import { useRouter } from 'vue-router'
 import HeaderPage from './components/headerPage.vue'
 import FooterPage from './components/footerPage.vue'
-import Loader from '@/components/loader.vue'
 
-// Variable globale pour suivre l'état de chargement
-const isLoading = ref(false)
-provide('isLoading', isLoading)
-
-const router = useRouter()
-
-// Gestion des transitions de route
-router.beforeEach((to, from, next) => {
-  isLoading.value = true // Active le loader global
-  next()
-})
-
-router.afterEach(() => {
-  isLoading.value = false // Désactive le loader global
-})
 </script>
 
 <template>
@@ -31,10 +15,6 @@ router.afterEach(() => {
 
   <!-- Contenu Principal -->
   <main class="pt-20 relative">
-     <div v-if="isLoading" class="loader-container">
-      <div class="loader"></div>
-    </div>
-    
     <Suspense>
       <!-- Composant dynamique avec fallback -->
       <template #default>
@@ -45,9 +25,7 @@ router.afterEach(() => {
       
       <!-- Fallback Loader -->
       <template #fallback>
-        <div class="loader-container">
-          <Loader />
-        </div>
+        
       </template>
     </Suspense>
     

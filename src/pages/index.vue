@@ -10,34 +10,8 @@ import { useMouse } from '@vueuse/core';
 import CardAccueil from '@/components/cardAccueil.vue';
 import { useHead } from '@unhead/vue'
 import IconArrow from '@/components/icons/IconArrow.vue';
-import { inject, type Ref } from 'vue'
-import { useRoute } from 'vue-router'
 
-const isLoading = inject('isLoading') as Ref<boolean>
 
-// Récupérer les paramètres de la route
-const route = useRoute()
-const projet = ref<any>(null) // Projet récupéré depuis PocketBase
-
-// Fonction pour charger les données dynamiques
-const fetchProjet = async () => {
-  try {
-    isLoading.value = true // Activer le loader
-
-    // Récupérer le projet par ID depuis la collection 'projets'
-    const id = route.params.id
-    projet.value = await pb.collection('projets').getOne(id, { expand: 'cards' })
-  } catch (error) {
-    console.error('Erreur lors du chargement des données :', error)
-  } finally {
-    isLoading.value = false // Désactiver le loader
-  }
-}
-
-// Charger les données lorsque la page est montée
-onMounted(() => {
-  fetchProjet()
-})
 
 const scrollToHeight = () => {
   window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -104,11 +78,7 @@ useHead({
 </script>
 
 <template>
-  <div v-if="isLoading" class="loader-container">
-      <div class="loader"></div>
-    </div>
  <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero">
-  
   
   <!-- Zone texte -->
 <div class="absolute inset-0 flex items-center justify-center z-40 lg:-mt-20 md:-mt-[70px]">

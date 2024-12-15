@@ -8,21 +8,6 @@ import { useRouter, useRoute } from 'vue-router';
 
 import { useHead } from '@unhead/vue'
 
-const isLoading = inject('isLoading') as Ref<boolean>
-const projet = ref<ProjetsResponse | null>(null)
-
-  onMounted(async () => {
-  try {
-    isLoading.value = true // Démarrer le loader
-
-    const id = route.params.id
-    projet.value = await pb.collection('projets').getOne(id)
-  } catch (error) {
-    console.error('Erreur lors du chargement des données :', error)
-  } finally {
-    isLoading.value = false // Arrêter le loader
-  }
-})
 
 useHead({
   title: ' Mes projets  | Portfolio de Noélie Talhouarn',
@@ -78,44 +63,12 @@ const fetchCards = async () => {
   }
 }
 
-const isAdmin = computed(() => pb.authStore.isValid)
 
-const deleteProject = async (cardId: string, projectId: string) => {
-  if (!confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
-    return
-  }
-
-  try {
-    // Supprimer la card
-    await pb.collection('cards').delete(cardId)
-    
-    // Supprimer le projet associé
-    if (projectId) {
-      await pb.collection('projets').delete(projectId)
-    }
-    
-    // Recharger la liste
-    await fetchCards()
-  } catch (error) {
-    console.error('Erreur lors de la suppression:', error)
-  }
-}
 
 
 
 </script>
 <template>
-  <div v-if="isLoading" class="loader-container">
-      <div class="loader"></div>
-    </div>
-  <div>
-  <Btn 
-      v-if="isAdmin"
-      class="bg-mauve text-white" 
-      url="/projet/edit" 
-      text="Créer un projet" 
-    />
-  </div>
     
   <section class="px-6">
     
@@ -192,13 +145,7 @@ const deleteProject = async (cardId: string, projectId: string) => {
       :url="`/projet/${card.expand?.projet?.id}`" 
       text="Voir plus" 
     /></div>
-   <button 
-      v-if="pb.authStore.isValid"
-      @click="deleteProject(card.id, card.expand?.projet?.id ?? '')"
-      class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
-    >
-      Supprimer
-    </button>
+  
   </div>
 
           </div>
@@ -207,32 +154,3 @@ const deleteProject = async (cardId: string, projectId: string) => {
   </section>
 </template>
 
-<style scoped>
-.loader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #ccc;
-  border-top-color: #6b46c1;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-</style>
