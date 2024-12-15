@@ -113,7 +113,7 @@ useHead({
   </article>
   <article>
     <p class="mb-6">
-      Je suis Noélie et je suis étudiante en BUT du multimédia et de l'internet à Montbéliard.
+      Je m'appelle Noélie et je suis étudiante en BUT du multimédia et de l'internet à Montbéliard.
       Actuellement en deuxième année, je suis spécialisée dans le développement web.
     </p>
   </article>

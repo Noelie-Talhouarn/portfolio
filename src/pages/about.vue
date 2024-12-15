@@ -46,7 +46,7 @@ useHead({
 
         <article class="lg:mr-20 lg:mb-10">
           <p class="lg:mb-5 lg:mt-14">
-            Je suis Noélie, j’ai 19 ans et je suis étudiante en 2ème année de BUT MMI (Métier du
+            Je m'appelle Noélie, j’ai 19 ans et je suis étudiante en 2ème année de BUT MMI (Métier du
             multimédia et de l’internet).
           </p>
           <p>
