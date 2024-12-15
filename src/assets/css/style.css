@@ -56,5 +56,13 @@
   background-color: #BCA9D4; /* Couleur de fond pour la sélection */
   color: #000; /* Couleur du texte sélectionné */
 } 
-
+.loader {
+  postion: absolute;
+  width: 100%;
+  height: 100%;
+  background: mauve;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 }

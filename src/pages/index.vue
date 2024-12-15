@@ -78,6 +78,7 @@ useHead({
 </script>
 
 <template>
+  
  <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero">
   
   <!-- Zone texte -->
@@ -134,11 +135,18 @@ useHead({
           >
   </article>
   <article class="">
+    <Suspense>
+    <template #default>
     <CardAccueil />
- 
+    </template>
+  <template #fallback>
+      <p>Chargement...</p>
+    </template>
+  </Suspense>
   </article>
 </section>
 </section>
+
 
 
     <section class="flex flex-col justify-center max-w-2xl mx-auto py-16 px-8">
