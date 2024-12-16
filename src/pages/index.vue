@@ -3,7 +3,7 @@
 import { computed, ref, onMounted, watch } from 'vue';
 import Btn from '@/components/btn.vue';
 import { pb } from '@/backend';
-import type { CardsResponse, ProjetsResponse } from '@/pocketbase-types';
+import type { CardsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
 import gsap from 'gsap';
 import { useMouse } from '@vueuse/core';
@@ -75,71 +75,10 @@ useHead({
     }
   ]
 })
-
-const isLoading = ref(true)
-const progress = ref(0)
-const loadingText = 'Chargement...'
-const visibleCharacters = ref(0)
-const isAnimationComplete = ref(false)
-
-// Chargement des données
-const loadData = async () => {
-  const startTime = performance.now()
-  const totalCharacters = loadingText.length
-  let loadedCharacters = 0
-
-  try {
-    // Charger les cards et projets
-    const listCard = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' })
-    const listProjet = await pb.collection('projets').getFullList<ProjetsResponse>()
-
-    const endTime = performance.now()
-    const loadTime = endTime - startTime
-    const intervalTime = loadTime / totalCharacters
-
-    // Animation du chargement
-    const timer = setInterval(() => {
-      loadedCharacters++
-      visibleCharacters.value = loadedCharacters
-      progress.value = Math.min((loadedCharacters / totalCharacters) * 100, 100)
-
-      if (loadedCharacters >= totalCharacters) {
-        clearInterval(timer)
-        setTimeout(() => {
-          isLoading.value = false
-          isAnimationComplete.value = true
-        }, 500)
-      }
-    }, intervalTime)
-
-    return { listCard, listProjet }
-  } catch (error) {
-    console.error('Erreur de chargement:', error)
-    isLoading.value = false
-    return null
-  }
-}
-
-// Exécuter le chargement
-loadData()
 </script>
 
 <template>
- <!-- Loader -->
-  <div v-if="isLoading" class="loader-container">
-    <div class="font-titre text-black text-xl md:text-4xl lg:text-4xl text-center">
-      <span 
-        v-for="(char, index) in loadingText" 
-        :key="index" 
-        :class="{ visible: index <= Math.floor(progress / (100 / loadingText.length)) }"
-      >
-        {{ char }}
-      </span>
-    </div>
-  </div>
-
-  <!-- Contenu -->
-  <div v-else>
+  
  <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero">
   
   <!-- Zone texte -->
@@ -225,6 +164,6 @@ loadData()
         <Btn class="" url="/contact" text="Me contacter" variant="default" />
       </article>
     </section>
-  </div>
+  
 </template>
 
