@@ -39,6 +39,7 @@ defineProps<{
         :record="card" 
         :filename="card.img" 
         class="w-full h-44 sm:h-48 md:h-52 object-cover rounded-t-3xl" 
+        loading="lazy"
         alt="Image du projet" 
       />
       <div class="p-4 sm:p-6">

@@ -76,6 +76,7 @@ useHead({
         :record="unProjet" 
         :filename="image" 
         class="mb-4 w-20 h-20" 
+        loading="lazy"
         alt="Couleurs du projet" 
            />
          </div>
@@ -107,6 +108,7 @@ useHead({
               :record="unProjet" 
               :filename="image" 
               class="w-full rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4" 
+              loading="lazy"
               alt="Couleurs du projet" 
             />
           </div>
@@ -130,6 +132,7 @@ useHead({
         :record="unProjet" 
         :filename="image" 
         class="transition-transform duration-300 w-[600] h-[600]" 
+        loading="lazy"
         alt="Image du projet" 
           />
         </div>

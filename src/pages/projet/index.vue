@@ -50,20 +50,26 @@ const setFilter = (newFilter: string) => {
 
 const fetchCards = async () => {
   try {
-    const newCards = await pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' })
-    const newProjets = await pb.collection('projets').getFullList<ProjetsResponse>()
-    
-    // Mise à jour de la liste
-    listCardWithProjet.value = newCards.map((card) => {
-      const projet = newProjets.find((p) => p.id === card.projet)
-      return { ...card, projet: projet ? projet : null, projetId: projet?.id, expand: { projet } }
-    })
+    listCard.value = await pb.collection('cards').getFullList({
+      expand: 'projet',
+      fields: 'id, titre, img, description_projet, domaines1, domaines2, domaines3',
+    });
   } catch (error) {
-    console.error('Erreur lors du chargement:', error)
+    console.error('Erreur lors du chargement des données:', error);
   }
-}
+};
 
 
+
+onMounted(async () => {
+  try {
+    const cardsPromise = pb.collection('cards').getFullList<CardsResponse>({ expand: 'projet' });
+    const projetsPromise = pb.collection('projets').getFullList<ProjetsResponse>();
+    [listCard.value, listProjet.value] = await Promise.all([cardsPromise, projetsPromise]);
+  } catch (error) {
+    console.error('Erreur lors du chargement des données:', error);
+  }
+});
 
 
 
@@ -119,6 +125,7 @@ const fetchCards = async () => {
         :record="card" 
         :filename="card.img" 
         class="w-full h-44 sm:h-48 md:h-52 object-cover rounded-t-3xl" 
+        loading="lazy"
         alt="Image du projet" 
       />
       
