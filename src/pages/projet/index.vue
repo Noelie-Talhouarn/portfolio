@@ -41,12 +41,12 @@ const setFilter = (newFilter: string) => {
   <section class="px-6">
     <!-- Titre principal -->
     <div class="relative mx-auto pl-14">
-      <h1 class="relative mb-12 text-center">Mes <span class="text-mauve">Projets</span></h1>
+      <h1 class="relative mb-12 lg:text-center">Mes <span class="text-mauve">Projets</span></h1>
     </div>
 
     <!-- Filtrage avec un menu déroulant sur mobile, et boutons sur écran plus large -->
-    <section class="mb-6 py-2 lg:flex lg:justify-center lg:space-x-4">
-      <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded text-sm bg-backgroundGris hover border border-mauve">
+    <section class="mb-6 py-2 flex justify-center lg:space-x-4">
+      <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded bg-backgroundGris hover border border-mauve">
         <option v-for="category in categories" :key="category" :value="category" class="">
           {{ category }}
         </option>
@@ -72,7 +72,7 @@ const setFilter = (newFilter: string) => {
       <div
         v-for="projet in filteredProjects"
         :key="projet.id"
-        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300"
+        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300 "
       >
         <!-- Image du projet -->
         <ImgPb
