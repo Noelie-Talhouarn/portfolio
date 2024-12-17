@@ -58,7 +58,7 @@ useHead({
             HTML, CSS et JavaScript et vue.js et taiwlind css, ainsi que ma connaissance de
             WordPress, sont des atouts qui sont pour moi important d’acquérir.
           </p>
-          <a class="font-bold text-mauve font-roboto-mono" href="/public/img/cv-portfolio-normandie-monteliard.pdf">Mon cv</a>
+            <a class="font-bold text-mauve font-roboto-mono" href="/img/cv-portfolio-normandie-monteliard.pdf" download>Mon cv</a>
         </article>
       </article>
 
