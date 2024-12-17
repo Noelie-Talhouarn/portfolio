@@ -79,10 +79,9 @@ useHead({
         <h2 class="lg:mt-7 md:mt-11 mt-8">Développeuse web</h2>
       </div>
     </div>
-
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
-      <button @click="scrollToHeight">
-        <IconArrow class="cursor-pointer transition-transform h-12 w-12" />
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col items-center justify-center">
+      <button @click="scrollToHeight" class="animate-[bounce_1.5s_ease-in-out_infinite]">
+      <IconArrow class="cursor-pointer h-12 w-12" /> 
       </button>
     </div>
 
