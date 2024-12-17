@@ -38,7 +38,7 @@ useHead({
       <article class="lg:grid lg:grid-cols-2 lg:items-center lg:justify-center">
         <article class="">
           <img
-            src="/src/img/moi.webp"
+            src="/public/img/moi.webp"
             alt="Photo de profil de Noélie Talhouarn"
             class="flex-justify-center h-42 w-42 mb-9 flex rounded-full lg:mx-auto lg:mt-9 lg:h-80 lg:w-80"
           />
@@ -58,7 +58,7 @@ useHead({
             HTML, CSS et JavaScript et vue.js et taiwlind css, ainsi que ma connaissance de
             WordPress, sont des atouts qui sont pour moi important d’acquérir.
           </p>
-          <a class="font-bold text-mauve font-roboto-mono" href="/src/img/cv-portfolio-normandie-monteliard.pdf">Mon cv</a>
+          <a class="font-bold text-mauve font-roboto-mono" href="/public/img/cv-portfolio-normandie-monteliard.pdf">Mon cv</a>
         </article>
       </article>
 
