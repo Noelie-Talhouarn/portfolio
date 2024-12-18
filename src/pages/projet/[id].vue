@@ -58,7 +58,7 @@ useHead({
         :url="unProjet.url"
         text="Voir le projet"
         target="_blank"
-        class="bg-mauve text-white py-2 px-4 rounded-md hover:opacity-90"
+        class="py-2 px-4 rounded-md hover:opacity-90"
       />
     </div>
       </div>

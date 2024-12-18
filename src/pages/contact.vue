@@ -38,7 +38,7 @@ useHead({
         </div>
         <h2 class="text-xl font-bold mb-2">Sur les Réseaux sociaux</h2>
         <p class="">
-        Vous pouvez me contacter via <a href="https://www.linkedin.com/in/noelie-talhouarn/"><span class="text-sky-600"> Linkedin</span></a> ou <a href="hhttps://www.instagram.com/noelie.tl_/"><span class="text-orange-500">Instagram</span></a>
+        Vous pouvez me contacter via <a href="https://www.linkedin.com/in/noelie-talhouarn/"><span class="text-sky-600"> Linkedin</span></a> ou <a href="https://www.instagram.com/noelie.tl_/"><span class="text-orange-500">Instagram</span></a>
         </p>
       </div>
       </div>
@@ -53,7 +53,7 @@ useHead({
         <p class="">
         Écrivez-moi à l'adresse mail suivante :
         <br />
-        <a href="mailto:contact@monadresse.com" class="font-medium lg:hover:text-purple-900">
+        <a href="mailto:noelie.talhouarn@gmail.com" class="font-medium lg:hover:text-purple-900">
           noelie.talhouarn@gmail.com
         </a>
         </p>
