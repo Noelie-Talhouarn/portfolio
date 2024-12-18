@@ -21,7 +21,7 @@ const variantClass = {
     v-if="url?.startsWith('http')"
     :href="url"
     :target="target"
-    class="bg-mauve text-black px-2 rounded-xl gap-4 py-2 text-xs font-bold uppercase lg:text-sm"
+    class="bg-mauve text-black px-2 rounded-lg gap-4 py-4 text-xs font-bold uppercase lg:text-sm"
     :class="variantClass[props.variant]"
   >
     {{ text }}
@@ -31,7 +31,7 @@ const variantClass = {
   <RouterLink
     v-else
     :to="url"
-    class="bg-mauve text-black px-2 rounded-xl gap-4 py-2 text-xs font-bold uppercase lg:text-sm"
+    class="bg-mauve text-black px-4 rounded-xl gap-4 py-2 text-xs font-bold  lg:text-base"
     :class="variantClass[props.variant]"
   >
     {{ text }}

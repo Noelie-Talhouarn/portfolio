@@ -104,57 +104,23 @@ useHead({
       </p>
     </article>
     <article>
-      <Btn class="" url="/about" text="en savoir plus" variant="default" />
+      <Btn class="" url="/about" text="En savoir plus" variant="default" />
     </article>
   </section>
+
+  
 
   <!-- Derniers projets -->
   <section>
     <section>
+     
       <article class="flex flex-col-2 gap-20 justify-center max-w-2xl mx-auto pt-16 mb-6 px-8">
         <h4>Derniers projets</h4>
         <RouterLink class="block py-2 rounded-lg underline" to="/projet">Voir tous les projets</RouterLink>
       </article>
 
       <article>
-        <div class="flex flex-wrap justify-center gap-16 max-w-6xl mx-auto px-4">
-          <div
-            v-for="projet in visibleProjects"
-            :key="projet.id"
-            class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300"
-          >
-            <ImgPb
-              :record="projet"
-              :filename="projet.img"
-              class="w-full h-44 sm:h-48 md:h-52 object-cover rounded-t-3xl"
-              loading="lazy"
-              alt="Image du projet"
-            />
-            <div class="p-4 sm:p-6">
-              <!-- Tags des domaines -->
-              <div class="flex flex-wrap gap-4 mb-2">
-                <span v-if="projet.domaine1" class="border border-black px-4 py-2 text-black rounded-full text-xs">
-                  {{ projet.domaine1 }}
-                </span>
-                <span v-if="projet.domaine2" class="border border-black px-4 py-2 text-black rounded-full text-xs">
-                  {{ projet.domaine2 }}
-                </span>
-                <span v-if="projet.domaine3" class="border border-black px-4 py-2 text-black rounded-full text-xs">
-                  {{ projet.domaine3 }}
-                </span>
-              </div>
-
-              <!-- Titre et description -->
-              <h4 class="text-lg font-semibold mb-1">{{ projet.titre }}</h4>
-              <p class="text-gray-700 text-sm mb-1">{{ projet.description_projet }}</p>
-
-              <!-- Bouton découvrir -->
-              <div class="mt-4">
-                <Btn :url="`/projet/${projet.id}`" text="Voir plus" />
-              </div>
-            </div>
-          </div>
-        </div>
+         <CardAccueil />
       </article>
     </section>
   </section>

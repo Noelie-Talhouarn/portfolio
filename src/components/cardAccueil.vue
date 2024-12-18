@@ -28,7 +28,7 @@ defineProps<{
     <div
       v-for="projet in visibleProjects"
       :key="projet.id"
-      class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300"
+      class="bg-white rounded-3xl shadow w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px]"
     >
       <!-- Image du projet -->
       <ImgPb
@@ -54,11 +54,11 @@ defineProps<{
 
         <!-- Titre et description -->
         <h4 class="text-lg font-semibold mb-1">{{ projet.titre }}</h4>
-        <p class="text-gray-700 text-sm mb-1">{{ projet.description_projet }}</p>
+        <p class="text-sm mb-1">{{ projet.description_projet }}</p>
 
         <!-- Bouton découvrir -->
         <div class="mt-4">
-          <Btn :url="`/projet/${projet.id}`" text="Voir plus" />
+          <Btn :url="`/projet/${projet.id}`" text="Découvrir le projet" />
         </div>
       </div>
     </div>

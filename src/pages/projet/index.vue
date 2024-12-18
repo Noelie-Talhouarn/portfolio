@@ -5,6 +5,7 @@ import type { ProjetsResponse } from '@/pocketbase-types';
 import ImgPb from '@/components/ImgPb.vue';
 import Btn from '@/components/btn.vue';
 import { useHead } from '@unhead/vue';
+import CardAccueil from '@/components/cardAccueil.vue';
 
 useHead({
   title: ' Mes projets  | Portfolio de Noélie Talhouarn',
@@ -72,7 +73,7 @@ const setFilter = (newFilter: string) => {
       <div
         v-for="projet in filteredProjects"
         :key="projet.id"
-        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] transition-all duration-300 "
+        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] shadow "
       >
         <!-- Image du projet -->
         <ImgPb

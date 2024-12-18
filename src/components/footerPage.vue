@@ -11,7 +11,7 @@ import IconInstagram from './icons/IconInstagram.vue'
   <footer class="px-24 lg:px-60 mt-6 ">
     <div class="border-t border-t-black p-2 pt-4">
       <nav
-        class="gap-8 space-y-8 px-5 *:break-inside-avoid *:space-y-3  lg:col-start-3 lg:columns-3 lg:px-0 lg:flex lg:justify-center"
+        class="gap-8 space-y-8 px-5 *:break-inside-avoid  lg:col-start-3 lg:columns-3 lg:px-0 lg:flex lg:justify-center"
       >
         <ul class="flex justify-center items-center gap-12">
           <li class="flex items-center">

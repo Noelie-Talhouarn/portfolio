@@ -34,7 +34,7 @@ useHead({
 
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="mb-4">{{ unProjet.titre }}</h1>
+            <h1 class="mb-8">{{ unProjet.titre }}</h1>
 
     <!-- Hero Section -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
@@ -43,7 +43,7 @@ useHead({
         <ImgPb 
           :record="unProjet" 
           :filename="unProjet.img" 
-          class="w-full h-[300px] md:h-[400px] object-cover rounded-lg shadow-lg" 
+          class="w-full h-[300px] md:h-[400px] object-cover rounded-lg" 
           alt="Image du projet" 
         />
       </div>
@@ -69,7 +69,7 @@ useHead({
   <!-- Colonne gauche -->
   <div class="space-y-6">
     <div>
-      <h3 class="text-xl font-semibold">{{ unProjet.sous_titre4 }}</h3>
+      <h3 class="text-xl font-semibold mb-6">{{ unProjet.sous_titre4 }}</h3>
       <div v-if="unProjet.outils" class="grid grid-cols-3 gap-2">
          <div v-for="image in unProjet.outils" :key="image">
            <ImgPb 
@@ -83,7 +83,7 @@ useHead({
        </div>
     </div>
     <div>
-      <h3 class="text-xl font-semibold">{{ unProjet.sous_titre3 }}</h3>
+      <h3 class="text-xl font-semibold mb-6">{{ unProjet.sous_titre3 }}</h3>
       <p class="">{{ unProjet.description3 }}</p>
     </div>
     
@@ -99,7 +99,7 @@ useHead({
     <!-- Section Charte Graphique -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
       <!-- Colonne gauche -->
-      <div class="bg-backgroundGris rounded-lg p-8">
+      <div class="bg-backgroundGris rounded-lg">
         <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre2 }}</h2>
         <p class=" mb-8">{{ unProjet.intertitre2 }}</p>
         <div v-if="unProjet.charte_graphique" class="grid grid-cols-2 gap-4">
