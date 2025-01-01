@@ -10,11 +10,8 @@ const listProjet = await pb.collection('projets').getFullList<ProjetsResponse>({
   sort: '-created' // Trier par date de création
 });
 
-// Extraire uniquement le dernier projet
-const lastProject = computed(() => listProjet.slice(-1));
-
 // Afficher 2 projets au maximum
-const visibleProjects = computed(() => listProjet.slice(-2));
+const visibleProjects = computed(() => listProjet.slice(0, 2));
 
 // Définir les props pour le composant
 defineProps<{

@@ -17,12 +17,8 @@ const scrollToHeight = () => {
 
 // Charger la liste complète des projets depuis PocketBase
 const listProjet = await pb.collection('projets').getFullList<ProjetsResponse>({ sort: '-created' });
-
-// Extraire uniquement le dernier projet
-const lastProject = computed(() => listProjet.slice(-1));
-
 // Afficher 2 projets au maximum
-const visibleProjects = computed(() => listProjet.slice(-2));
+const visibleProjects = computed(() => listProjet.slice(0, 2));
 
 // Gestion de l'animation des cercles avec la souris
 const { x, y } = useMouse();
