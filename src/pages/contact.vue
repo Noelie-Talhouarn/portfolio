@@ -32,7 +32,7 @@ useHead({
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-16">
       <div class="max-w-md mx-auto w-full">
       <!-- Par chat -->
-      <div class="p-6 shadow rounded-lg bg-white">
+      <div class="p-6 shadow-lg rounded-lg bg-white border">
         <div class="flex justify-center text-4xl mb-4 text-mauve">
         <Iconsmartphone class="h-10 w-10"/>
         </div>
@@ -45,7 +45,7 @@ useHead({
 
       <div class="max-w-md mx-auto w-full">
       <!-- Par mail -->
-      <div class="p-6 shadow rounded-lg bg-white">
+      <div class="p-6 shadow-lg rounded-lg bg-white border">
         <div class="flex justify-center text-4xl mb-4 text-mauve">
         <Iconmail class="h-10 w-10"/>
         </div>

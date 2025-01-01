@@ -34,7 +34,7 @@ useHead({
       <article class="lg:grid lg:grid-cols-2 lg:items-center lg:justify-center">
         <article class="">
           <img
-            src="/public/img/moi.webp"
+            src="/public/img/moi2.png"
             alt="Photo de profil de Noélie Talhouarn"
             class="flex-justify-center h-42 w-42 mb-9 flex rounded-full lg:mx-auto lg:mt-9 lg:h-80 lg:w-80"
           />

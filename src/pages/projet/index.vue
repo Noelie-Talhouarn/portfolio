@@ -60,7 +60,7 @@ const setFilter = (newFilter: string) => {
           @click="setFilter(category)"
           :class="[ 
             'py-2 px-4 rounded-full text-sm ', 
-            filter === category ? 'bg-mauve text-black' : 'bg-backgroundGris border border-mauve text-gray-800 hover:bg-mauve ' 
+            filter === category ? 'bg-mauve text-black' : 'border border-mauve text-gray-800 hover:bg-mauve ' 
           ]"
         >
           {{ category }}
@@ -73,7 +73,7 @@ const setFilter = (newFilter: string) => {
       <div
         v-for="projet in filteredProjects"
         :key="projet.id"
-        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] shadow "
+        class="bg-white rounded-3xl w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px] shadow-lg "
       >
         <!-- Image du projet -->
         <ImgPb

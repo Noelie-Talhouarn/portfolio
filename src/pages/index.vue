@@ -71,7 +71,7 @@ useHead({
 </script>
 
 <template>
-  <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero">
+  <section class="gradient-bg-hero h-[670px] w-full relative z-30 hero ">
     <!-- Zone texte -->
     <div class="absolute inset-0 flex items-center justify-center z-40 lg:-mt-20 md:-mt-[70px]">
       <div class="text-center">

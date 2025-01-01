@@ -99,7 +99,7 @@ useHead({
     <!-- Section Charte Graphique -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
       <!-- Colonne gauche -->
-      <div class="bg-backgroundGris rounded-lg">
+      <div class=" rounded-lg">
         <h2 class="text-2xl font-semibold mb-4">{{ unProjet.sous_titre2 }}</h2>
         <p class=" mb-8">{{ unProjet.intertitre2 }}</p>
         <div v-if="unProjet.charte_graphique" class="grid grid-cols-2 gap-4">

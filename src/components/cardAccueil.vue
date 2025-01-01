@@ -28,7 +28,7 @@ defineProps<{
     <div
       v-for="projet in visibleProjects"
       :key="projet.id"
-      class="bg-white rounded-3xl shadow w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px]"
+      class="bg-white rounded-3xl shadow-lg w-[320px] sm:w-[340px] md:w-[360px] lg:w-[380px]"
     >
       <!-- Image du projet -->
       <ImgPb

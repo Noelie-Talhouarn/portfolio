@@ -25,7 +25,7 @@ function closeMenu() {
 <template>
   <header
     class="fixed top-0 left-0 right-0 flex items-center justify-between px-4 gap-8 h-20 z-50"
-    :class="{ 'bg-backgroundGris': activeMenu }"
+    :class="{ '': activeMenu }"
   >
   <div v-if="isLoggedIn" class="text-mauve">
       Bonjour {{ adminName }}
@@ -34,7 +34,7 @@ function closeMenu() {
       <IconLogo aria-hidden="true"  class="h-12 w-12" />
     </RouterLink>
     <button
-      class="relative z-10 flex h-9 w-11 flex-col justify-between p-2 lg:hidden *:block *:ease *:h-[2px] *:w-full *:transform *:rounded-full *:bg-black *:transition *:duration-300 border border-mauve rounded-md bg-backgroundGris"
+      class="relative z-10 flex h-9 w-11 flex-col justify-between p-2 lg:hidden *:block *:ease *:h-[2px] *:w-full *:transform *:rounded-full *:bg-black *:transition *:duration-300 border border-mauve rounded-md "
       @click="activeMenu = !activeMenu"
       aria-label="Menu"
       :aria-expanded="activeMenu ? 'true' : 'false'"
@@ -50,7 +50,7 @@ function closeMenu() {
       v-scroll-lock="activeMenu"
     >
       <ul
-        class="flex flex-col gap-8 lg:flex-row text-2xl text-black text-center lg:text-lg lg:px-4 lg:border lg:border-mauve lg:rounded-3xl lg:bg-backgroundGris "
+        class="flex flex-col gap-8 lg:flex-row text-2xl text-black text-center lg:text-lg lg:px-4 lg:border lg:border-mauve lg:rounded-3xl lg:bg-white "
       >
         <li>
           <RouterLink
