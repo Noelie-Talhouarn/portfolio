@@ -47,7 +47,7 @@ const setFilter = (newFilter: string) => {
 
     <!-- Filtrage avec un menu déroulant sur mobile, et boutons sur écran plus large -->
     <section class="mb-6 py-2 flex justify-center lg:space-x-4">
-      <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded bg-backgroundGris hover border border-mauve">
+      <select v-model="filter" @change="setFilter(($event.target as HTMLSelectElement).value || '')" class="block lg:hidden py-2 px-4 rounded bg-white hover border border-mauve">
         <option v-for="category in categories" :key="category" :value="category" class="">
           {{ category }}
         </option>
