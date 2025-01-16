@@ -24,7 +24,7 @@ useHead({
         Me <span class="text-mauve">contacter</span>
       </h1>
       <p class="mt-14 lg:px-20 mb-12 px-4">
-        Besoin de renfort technique ? Je suis prête à contribuer à vos projets web, que ce soit pour du développement front-end ou back-end.
+        Besoin de renfort technique ? Je suis prête à contribuer à vos projets !
       </p>
     </div>
 
