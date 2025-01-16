@@ -72,7 +72,7 @@ useHead({
     <div class="absolute inset-0 flex items-center justify-center z-40 lg:-mt-20 md:-mt-[70px]">
       <div class="text-center">
         <h1 class="lg:text-8xl">Noélie <span>Talhouarn</span></h1>
-        <h2 class="lg:mt-7 md:mt-11 mt-8">Étudiante en multimédia (communication, design et développement web)</h2>
+        <h2 class="lg:mt-7 md:mt-11 mt-8">Étudiante en multimédia</h2>
       </div>
     </div>
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col items-center justify-center">
