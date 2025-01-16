@@ -128,7 +128,7 @@ useHead({
     </article>
     <article>
       <p>
-        Besoin de renfort technique ? Je suis prête à contribuer à vos projets ! Contactez-moi pour transformer vos idées en
+        Besoin de renfort technique ? Je suis prête à contribuer à vos projets. Contactez-moi pour transformer vos idées en
         solutions web performantes !
       </p>
     </article>
