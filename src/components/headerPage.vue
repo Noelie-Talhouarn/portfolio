@@ -27,9 +27,6 @@ function closeMenu() {
     class="fixed top-0 left-0 right-0 flex items-center justify-between px-4 gap-8 h-20 z-50"
     :class="{ '': activeMenu }"
   >
-  <div v-if="isLoggedIn" class="text-mauve">
-      Bonjour {{ adminName }}
-    </div>
     <RouterLink to="/" aria-label="Accueil" @click="closeMenu">
       <IconLogo aria-hidden="true"  class="h-12 w-12" />
     </RouterLink>
