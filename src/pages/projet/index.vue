@@ -23,7 +23,7 @@ const listProjet = await pb.collection('projets').getFullList<ProjetsResponse>({
 
 // Définir le filtre actif
 const filter = ref('Tous');
-const categories = ['Tous', 'Dev', 'Design'];
+const categories = ['Tous', 'Dev', 'Design', 'Communication'];
 
 // Appliquer le filtre et retourner les projets filtrés
 const filteredProjects = computed(() => {
